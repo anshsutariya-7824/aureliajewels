@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Wholesale Catalog & Sourcing | AURELIA Jewelry Manufacturing</title>
+  <meta name="description" content="Browse our wholesale fine jewelry catalog. Sourcing custom gold rings, pendants, bracelets, and earrings in bulk. OEM/ODM contract casting with certified shipping.">
+  <meta name="keywords" content="wholesale jewelry catalog, bulk jewelry sourcing, gold rings catalog, diamond bracelets oem, gold earrings exporter">
+  <link rel="canonical" href="https://aureliajewelry.com/collections.html">
+  
+  <!-- OpenGraph Card for Social Media -->
+  <meta property="og:title" content="Wholesale Catalog & Sourcing | AURELIA Jewelry Manufacturing">
+  <meta property="og:description" content="Browse AURELIA's wholesale jewelry catalog. OEM/ODM contract casting divisions for global brands, importers, and retail chains.">
+  <meta property="og:image" content="images/ring-collection.png">
+  <meta property="og:url" content="https://aureliajewelry.com/collections.html">
+  <meta property="og:type" content="website">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css?v=2.0">
+  
+  <!-- FontAwesome Icons for Luxury Accents -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Premium Floating WhatsApp Quick Contact -->
+  <a href="https://wa.me/919427059390?text=Hi%20Aurelia%2C%20I%27d%20like%20to%20know%20more%20about%20your%20jewelry." 
+     class="whatsapp-float" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     aria-label="Contact Aurelia via WhatsApp"
+     id="whatsappButton">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Header Section -->
+  <header id="siteHeader">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logoLink">
+        AURELIA<span>.</span>
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="nav-links" id="mainNavigation" aria-label="Main Navigation">
+        <a href="index.html" id="navHome">Home</a>
+        <a href="about.html" id="navAbout">About</a>
+        <a href="collections.html" id="navCollections">Collections</a>
+        <a href="diamonds.html" id="navDiamonds">Diamonds</a>
+        <a href="contact.html" id="navContact">Contact</a>
+      </nav>
+
+
+      <!-- Mobile Hamburger Button -->
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" id="mobileMenuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Page Hero Banner -->
+  <section class="page-hero" id="collectionsHero">
+    <div class="container">
+      <span class="subtitle">The Full Catalog</span>
+      <h1>Collections</h1>
+      <p>Every piece is made to order — as a single custom item or a full wholesale run. Filter by category below.</p>
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a> &nbsp;/&nbsp; <span>Collections</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Catalog Section -->
+  <section class="catalog-section" id="catalog">
+    <div class="container">
+      
+      <!-- Category Filter Tabs -->
+      <div class="filter-tabs reveal">
+        <button class="filter-btn active" data-filter="all" id="btnFilterAll">All Categories</button>
+        <button class="filter-btn" data-filter="rings" id="btnFilterRings">Rings</button>
+        <button class="filter-btn" data-filter="necklaces" id="btnFilterNecklaces">Necklaces</button>
+        <button class="filter-btn" data-filter="bracelets" id="btnFilterBracelets">Bracelets</button>
+        <button class="filter-btn" data-filter="earrings" id="btnFilterEarrings">Earrings</button>
+      </div>      <!-- Product Cards Grid -->
+      <div class="products-grid reveal" id="catalogProductsGrid">
+        <!-- Dynamically populated from PRODUCTS_DATA -->
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Success Modal Overlay (Triggered by JS) -->
+  <div class="modal-overlay" id="successModal" aria-hidden="true" role="dialog">
+    <div class="modal-box">
+      <span class="modal-close" aria-label="Close dialog">&times;</span>
+      <div class="modal-icon"><i class="fa-solid fa-circle-check"></i></div>
+      <h3 id="modalTitle">Successfully Submitted</h3>
+      <p id="modalText">We have processed your request. An advisor will contact you shortly.</p>
+      <button class="btn btn-secondary" onclick="document.getElementById('successModal').classList.remove('active')">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer id="siteFooter">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand Info -->
+        <div class="footer-col">
+          <h3 class="footer-logo">AURELIA<span>.</span></h3>
+          <p>Fine jewelry contract manufacturer and global exporter supplying certified diamond and gold jewelry in bulk to distributors, retail stores, and importers worldwide.</p>
+          <div class="social-links">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <!-- Col 2: Sourcing Links -->
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <nav class="footer-links" aria-label="Footer Navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="collections.html">Collections</a>
+            <a href="diamonds.html">Diamonds</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <!-- Col 3: Sourcing Assistance -->
+        <div class="footer-col">
+          <h4>Assistance</h4>
+          <nav class="footer-links" aria-label="Customer Services">
+            <a href="contact.html">Custom & Bespoke Orders</a>
+            <a href="collections.html">Wholesale & MOQs</a>
+            <a href="contact.html">Request a Prototype</a>
+            <a href="about.html">Shipping & Export Policy</a>
+          </nav>
+        </div>
+        <!-- Col 4: Newsletter -->
+        <div class="footer-col">
+          <h4>Stay Updated</h4>
+          <p>New collections, diamond arrivals, and trade show dates — a few times a year, nothing more.</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Your email" required aria-label="Newsletter Email Input">
+            <button type="submit" class="newsletter-btn" aria-label="Submit Newsletter"><i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 AURELIA Jewelry Exports. All Rights Reserved. Certified RJC Manufacturer.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/products-data.js?v=2.0"></script>
+  <script src="js/site-content.js?v=2.0"></script>
+  <script src="js/content-loader.js?v=2.0"></script>
+  <script src="js/main-b2b.js?v=2.0"></script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Diamond Specifications | AURELIA Jewelry Manufacturing</title>
+  <meta name="description" content="View GIA certified diamond grading, measurements, proportions, and certificate numbers. Complete custom jewelry casting contract options.">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css?v=2.0">
+  
+  <!-- FontAwesome Icons for B2B Actions -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Premium Floating WhatsApp Quick Contact -->
+  <a href="https://wa.me/919427059390?text=Hi%20Aurelia%2C%20I%27d%20like%20to%20know%20more%20about%20your%20diamonds." 
+     class="whatsapp-float" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     aria-label="Contact Aurelia via WhatsApp"
+     id="whatsappButton">
+     <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Header Section -->
+  <header id="siteHeader">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logoLink">
+        AURELIA<span>.</span>
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="nav-links" id="mainNavigation" aria-label="Main Navigation">
+        <a href="index.html" id="navHome">Home</a>
+        <a href="about.html" id="navAbout">About</a>
+        <a href="collections.html" id="navCollections">Collections</a>
+        <a href="diamonds.html" class="active" id="navDiamonds">Diamonds</a>
+        <a href="contact.html" id="navContact">Contact</a>
+      </nav>
+
+
+      <!-- Mobile Hamburger Button -->
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" id="mobileMenuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Page Breadcrumbs Banner (No big hero, cleaner like details page) -->
+  <section style="border-bottom: 1px solid var(--color-border); padding: 7.5rem 0 1.5rem 0; background-color: var(--bg-primary);">
+    <div class="container">
+      <div class="breadcrumbs" style="font-size: 0.85rem; color: var(--text-secondary); text-align: left;">
+        <a href="index.html" style="color: var(--text-secondary); text-decoration: none;">Home</a> &nbsp;/&nbsp; 
+        <a href="diamonds.html" style="color: var(--text-secondary); text-decoration: none;">Diamonds</a> &nbsp;/&nbsp; 
+        <span id="breadDiamondName" style="color: var(--color-gold);">Loading...</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dynamic Diamond Detail Content -->
+  <section class="diamond-detail-section" style="background-color: var(--bg-primary);">
+    <div class="container">
+      
+      <!-- Error Message Box (Hidden by default) -->
+      <div class="not-found-box hide" id="diamondErrorBox">
+        <i class="fa-solid fa-triangle-exclamation error-icon"></i>
+        <h2>Diamond Not Found</h2>
+        <p>We couldn't find a diamond matching that certificate or ID. Get in touch and we'll help you track down the right stone.</p>
+        <a href="diamonds.html" class="btn btn-primary">Back to Diamond Catalog</a>
+      </div>
+
+      <div class="diamond-detail-layout" id="diamondDetailContent">
+        <!-- Left Side: Image and Photo/Video Toggles -->
+        <div class="detail-left reveal">
+          <div class="detail-img-box">
+            <img src="" id="detailImage" alt="Diamond detail view">
+          </div>
+          <div class="detail-media-tabs">
+            <button class="media-tab-btn active" id="tabPhoto" aria-label="View photo">Photo</button>
+            <button class="media-tab-btn" id="tabVideo" aria-label="View spin video">Video</button>
+          </div>
+        </div>
+
+        <!-- Right Side: Specs Title and Actions -->
+        <div class="detail-right reveal reveal-delay-1">
+          <div>
+            <div class="badge-wrapper" style="position: static; display: flex; gap: 0.5rem; margin-bottom: 1.2rem;">
+              <span class="badge-new hide" id="badgeNew">New</span>
+              <span class="badge-featured hide" id="badgeFeatured">Featured</span>
+              <span class="badge-rare hide" id="badgeRare">Rare</span>
+              <span class="badge-investment hide" id="badgeInvestment">Investment</span>
+            </div>
+            <h1 id="detailName">Loading Diamond Specs...</h1>
+            <p class="detail-subtitle" id="detailSubtitle">Carat • Cut • Clarity • Color</p>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="detail-actions">
+            <a href="" id="whatsappContactBtn" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> Ask on WhatsApp
+            </a>
+            <a href="" id="inquiryContactBtn" class="btn-inquiry">
+              Send Inquiry
+            </a>
+          </div>
+
+          <!-- Specifications Table -->
+          <div>
+            <h3 class="specs-title">Diamond Specifications</h3>
+            <table class="specs-table" style="margin-top: 1rem;">
+              <tbody>
+                <tr>
+                  <td>Shape</td>
+                  <td id="specShape">-</td>
+                </tr>
+                <tr>
+                  <td>Carat Weight</td>
+                  <td id="specCarat">-</td>
+                </tr>
+                <tr>
+                  <td>Cut Grade</td>
+                  <td id="specCut">-</td>
+                </tr>
+                <tr>
+                  <td>Clarity</td>
+                  <td id="specClarity">-</td>
+                </tr>
+                <tr>
+                  <td>Color</td>
+                  <td id="specColor">-</td>
+                </tr>
+                <tr>
+                  <td>Measurements</td>
+                  <td id="specMeasurements">-</td>
+                </tr>
+                <tr>
+                  <td>Table</td>
+                  <td id="specTable">-</td>
+                </tr>
+                <tr>
+                  <td>Depth</td>
+                  <td id="specDepth">-</td>
+                </tr>
+                <tr>
+                  <td>Polish</td>
+                  <td id="specPolish">-</td>
+                </tr>
+                <tr>
+                  <td>Symmetry</td>
+                  <td id="specSymmetry">-</td>
+                </tr>
+                <tr>
+                  <td>Fluorescence</td>
+                  <td id="specFluorescence">-</td>
+                </tr>
+                <tr>
+                  <td>Certificate</td>
+                  <td id="specCertificate">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- You May Also Like (Related Diamonds Section) -->
+  <section class="related-products-section" style="border-top: 1px solid var(--color-border);" id="relatedDiamondsSection">
+    <div class="container">
+      <h2 style="font-family: var(--font-serif); font-size: 2.2rem; margin-bottom: 3rem; text-align: center; color: var(--text-primary);">You May Also Like</h2>
+      
+      <div class="diamonds-grid" id="relatedGrid">
+        <!-- Generated Dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand Info -->
+        <div class="footer-col">
+          <h3 class="footer-logo">AURELIA<span>.</span></h3>
+          <p>Fine jewelry manufacturer and diamond exporter, supplying certified pieces to individual buyers, retail stores, and importers worldwide.</p>
+          <div class="social-links">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <!-- Col 2: Sourcing Links -->
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <nav class="footer-links" aria-label="Footer Navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="collections.html">Collections</a>
+            <a href="diamonds.html">Diamonds</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <!-- Col 3: Sourcing Assistance -->
+        <div class="footer-col">
+          <h4>Assistance</h4>
+          <nav class="footer-links" aria-label="Customer Services">
+            <a href="contact.html">Custom & Bespoke Orders</a>
+            <a href="collections.html">Wholesale & MOQs</a>
+            <a href="contact.html">Request a Prototype</a>
+            <a href="about.html">Shipping & Export Policy</a>
+          </nav>
+        </div>
+        <!-- Col 4: Newsletter -->
+        <div class="footer-col">
+          <h4>Stay Updated</h4>
+          <p>New collections, diamond arrivals, and trade show dates — a few times a year, nothing more.</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Your email" required aria-label="Newsletter Email Input">
+            <button type="submit" class="newsletter-btn" aria-label="Submit Newsletter"><i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 AURELIA Jewelry Exports. All Rights Reserved. Certified RJC Manufacturer.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/products-data.js?v=2.0"></script>
+  <script src="js/main-b2b.js?v=2.0"></script>
+
+  <!-- Details dynamic rendering script -->
+  <script>
+    // Extract ID parameter from URL query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const diamondId = parseInt(urlParams.get('id'));
+
+    // Find the diamond in dataset
+    const diamond = DIAMONDS_DATA.find(d => d.id === diamondId);
+
+    if (!diamond) {
+      // Hide layout details and show error box
+      document.getElementById('diamondDetailContent').classList.add('hide');
+      document.getElementById('relatedDiamondsSection').classList.add('hide');
+      document.getElementById('diamondErrorBox').classList.remove('hide');
+    } else {
+      // Populate elements
+      document.getElementById('breadDiamondName').textContent = diamond.name;
+      document.getElementById('detailName').textContent = diamond.name;
+      document.getElementById('detailImage').src = diamond.image;
+      document.getElementById('detailSubtitle').innerHTML = `${diamond.carat} ct<span>•</span>${diamond.cut} Cut<span>•</span>${diamond.clarity} Clarity<span>•</span>${diamond.color} Color`;
+      
+      // Badges
+      if (diamond.isNew) document.getElementById('badgeNew').classList.remove('hide');
+      if (diamond.isFeatured) document.getElementById('badgeFeatured').classList.remove('hide');
+      if (diamond.isRare) document.getElementById('badgeRare').classList.remove('hide');
+      if (diamond.isInvestment) document.getElementById('badgeInvestment').classList.remove('hide');
+
+      // Table specs
+      document.getElementById('specShape').textContent = diamond.shape.charAt(0).toUpperCase() + diamond.shape.slice(1);
+      document.getElementById('specCarat').textContent = `${diamond.carat} ct`;
+      document.getElementById('specCut').textContent = diamond.cut;
+      document.getElementById('specClarity').textContent = diamond.clarity;
+      document.getElementById('specColor').textContent = diamond.color;
+      document.getElementById('specMeasurements').textContent = diamond.measurements;
+      document.getElementById('specTable').textContent = diamond.table;
+      document.getElementById('specDepth').textContent = diamond.depth;
+      document.getElementById('specPolish').textContent = diamond.polish;
+      document.getElementById('specSymmetry').textContent = diamond.symmetry;
+      document.getElementById('specFluorescence').textContent = diamond.fluorescence;
+      document.getElementById('specCertificate').textContent = diamond.certificate;
+
+      // Contact Links
+      const whatsappMsg = encodeURIComponent(`Hi Aurelia, I'm interested in this GIA certified diamond: ${diamond.name} (${diamond.certificate})`);
+      document.getElementById('whatsappContactBtn').href = `https://wa.me/919427059390?text=${whatsappMsg}`;
+      document.getElementById('inquiryContactBtn').href = `contact.html?product=${encodeURIComponent(diamond.name)}`;
+
+      // PHOTO / VIDEO tab toggle interaction
+      const imgEl = document.getElementById('detailImage');
+      const tabPhoto = document.getElementById('tabPhoto');
+      const tabVideo = document.getElementById('tabVideo');
+
+      tabPhoto.addEventListener('click', () => {
+        tabVideo.classList.remove('active');
+        tabPhoto.classList.add('active');
+        // Reset transform
+        imgEl.style.transform = 'none';
+        imgEl.style.animation = 'none';
+      });
+
+      tabVideo.addEventListener('click', () => {
+        tabPhoto.classList.remove('active');
+        tabVideo.classList.add('active');
+        // Micro-animation: infinite slow rotation on Y axis to simulate 3D spin view
+        imgEl.style.transform = 'perspective(800px) rotateY(0deg)';
+        imgEl.style.transition = 'transform 0.5s ease';
+        
+        // Define animation dynamically if not already added
+        if (!document.getElementById('spinStyle')) {
+          const style = document.createElement('style');
+          style.id = 'spinStyle';
+          style.innerHTML = `
+            @keyframes diamondSpin {
+              0% { transform: perspective(800px) rotateY(0deg); }
+              50% { transform: perspective(800px) rotateY(180deg); }
+              100% { transform: perspective(800px) rotateY(360deg); }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+        
+        imgEl.style.animation = 'diamondSpin 8s infinite linear';
+      });
+
+      // Render Related Diamonds (You May Also Like)
+      const relatedGrid = document.getElementById('relatedGrid');
+      // Get 3 other diamonds of same shape, or fallback to others
+      let relatedList = DIAMONDS_DATA.filter(d => d.id !== diamond.id && d.shape === diamond.shape);
+      if (relatedList.length < 3) {
+        const fallbacks = DIAMONDS_DATA.filter(d => d.id !== diamond.id && d.shape !== diamond.shape);
+        relatedList = [...relatedList, ...fallbacks].slice(0, 3);
+      } else {
+        relatedList = relatedList.slice(0, 3);
+      }
+
+      relatedGrid.innerHTML = relatedList.map(d => {
+        const badgeNew = d.isNew ? `<span class="badge-new">New</span>` : "";
+        const badgeFeatured = d.isFeatured ? `<span class="badge-featured">Featured</span>` : "";
+        
+        return `
+          <div class="diamond-card reveal" style="opacity: 1;">
+            <a href="diamond-detail.html?id=${d.id}" style="display: block; color: inherit;">
+              <div class="diamond-img-holder">
+                <div class="badge-wrapper">
+                  ${badgeNew}
+                  ${badgeFeatured}
+                </div>
+                <img src="${d.image}" alt="${d.name} loose diamond showcase">
+              </div>
+              <div class="diamond-info">
+                <h3>${d.name}</h3>
+                <p class="diamond-specs">${d.carat} ct<span>•</span>${d.cut}<span>•</span>${d.clarity}<span>•</span>${d.color}</p>
+              </div>
+            </a>
+          </div>
+        `;
+      }).join('');
+    }
+  </script>
+</body>
+</html>

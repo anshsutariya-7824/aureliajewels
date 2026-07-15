@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags (Dynamic replacement in script) -->
+  <title>Wholesale Product Details | AURELIA Jewelry Sourcing</title>
+  <meta name="description" content="Explore custom manufacturing and wholesale specifications for fine jewelry castings, rings, necklaces, and bangles. Certified RJC contract manufacturing.">
+  <meta name="keywords" content="jewelry casting, custom jewelry design, wholesale jewelry specs, gold rings manufacturer">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css?v=2.0">
+  
+  <!-- FontAwesome Icons for Luxury Accents -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Premium Floating WhatsApp Quick Contact -->
+  <a href="https://wa.me/919427059390?text=Hi%20Aurelia%2C%20I%27d%20like%20to%20know%20more%20about%20this%20piece." 
+     class="whatsapp-float" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     aria-label="Contact Aurelia via WhatsApp"
+     id="whatsappButton">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Header Section -->
+  <header id="siteHeader">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logoLink">
+        AURELIA<span>.</span>
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="nav-links" id="mainNavigation" aria-label="Main Navigation">
+        <a href="index.html" id="navHome">Home</a>
+        <a href="about.html" id="navAbout">About</a>
+        <a href="collections.html" id="navCollections">Collections</a>
+        <a href="diamonds.html" id="navDiamonds">Diamonds</a>
+        <a href="contact.html" id="navContact">Contact</a>
+      </nav>
+
+
+      <!-- Mobile Hamburger Button -->
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" id="mobileMenuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Page Breadcrumbs Section -->
+  <div class="product-breadcrumbs">
+    <div class="container">
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a> &nbsp;/&nbsp; <a href="collections.html">Collections</a> &nbsp;/&nbsp; <span id="breadcrumbCurrent">Product Details</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Product Detail Section -->
+  <section class="product-detail-section" id="productDetail">
+    <div class="container">
+      
+      <!-- Placeholder container for error / not found -->
+      <div id="productNotFound" class="not-found-box hide">
+        <i class="fa-solid fa-gem error-icon"></i>
+        <h2>Product Not Found</h2>
+        <p>We couldn't find that product. It may have been moved or retired from the catalog.</p>
+        <a href="collections.html" class="btn btn-secondary">Back to Collections</a>
+      </div>
+
+      <!-- Normal details layout -->
+      <div id="productDetailsContent" class="product-details-grid">
+        
+        <!-- Left: Product Media Gallery -->
+        <div class="product-media-column reveal">
+          <div class="cert-frame">
+            <div class="main-image-wrapper">
+              <span class="product-badge" id="productMoqBadge">MOQ: 10</span>
+              <img src="images/ring-collection.png" alt="Featured Jewelry casting specs" id="mainShowcaseImg">
+            </div>
+          </div>
+          <div class="thumbnail-strip" id="galleryThumbnails">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Right: Specifications Info -->
+        <div class="product-info-column reveal reveal-delay-1">
+          <span class="product-division-tag" id="productCategoryTag">RINGS DIVISION</span>
+          <h1 class="product-title" id="productTitle">Wholesale Solitaire Rings</h1>
+          <p class="product-description" id="productDesc">Loading wholesale product descriptions and contract parameters...</p>
+          
+          <div class="spec-report-card cert-frame">
+            <div class="report-header">
+              <span class="report-title">TECHNICAL PROFILE</span>
+              <span class="report-number">REPORT NO. AU-SPEC-B2B</span>
+            </div>
+            <div class="spec-grid">
+              <div class="spec-grid-item full-width">
+                <span class="spec-label"><i class="fa-solid fa-circle-nodes"></i> Metal Alloy Choices</span>
+                <span class="spec-value" id="specAlloys">14k / 18k Gold, Platinum</span>
+              </div>
+              <div class="spec-grid-item full-width">
+                <span class="spec-label"><i class="fa-solid fa-gem"></i> Gemstone Details</span>
+                <span class="spec-value" id="specGems">GIA Certified Natural Diamonds</span>
+              </div>
+              <div class="spec-grid-item full-width">
+                <span class="spec-label"><i class="fa-solid fa-calendar-check"></i> Est. Production Lead</span>
+                <span class="spec-value" id="specLead">15 Business Days</span>
+                <span id="specMoq" style="display: none;"></span>
+              </div>
+              <div class="spec-grid-item full-width price-highlight">
+                <span class="spec-label"><i class="fa-solid fa-shield-halved"></i> Pricing Structure</span>
+                <span class="spec-value highlight-gold" id="specPrice">Quote on Request</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Buttons Panel -->
+          <div class="detail-action-buttons">
+            <a href="#" class="btn btn-primary" id="btnRequestCad">
+              <i class="fa-solid fa-drafting-compass"></i> Request a Sample
+            </a>
+            <a href="#" class="btn btn-secondary" id="btnInquireWhatsapp" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> Ask on WhatsApp
+            </a>
+          </div>
+
+          <div class="factory-trust-logos">
+            <div class="trust-item"><i class="fa-solid fa-award"></i> <span>RJC Audited</span></div>
+            <div class="trust-item"><i class="fa-solid fa-certificate"></i> <span>GIA Assured</span></div>
+            <div class="trust-item"><i class="fa-solid fa-globe"></i> <span>Global Freight</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Information & Shipping Tabs Section -->
+  <section class="product-tabs-section reveal" id="productTechnicalInfo">
+    <div class="container">
+      <div class="tabs-header">
+        <button class="tab-link active" data-tab="tabSpecs">Casting Details</button>
+        <button class="tab-link" data-tab="tabPackaging">Packaging & Freight</button>
+        <button class="tab-link" data-tab="tabCompliance">Trade Compliance</button>
+      </div>
+
+      <div class="tabs-content-wrapper">
+        <!-- Tab 1: Specs -->
+        <div class="tab-pane active" id="tabSpecs">
+          <h3>Advanced Casting Engineering</h3>
+          <p>Our casting division leverages computer-aided design (CAD) modeling software to generate exact metal densities. Every batch undergoes ultrasonic gold cleaning and chemical verification tests to guarantee absolute alloy purities matching international trade hallmarking certifications.</p>
+          <ul class="spec-detail-list">
+            <li><strong>CNC Mold Verification:</strong> 3D master waxes are printed at 25-micron resolutions for perfect geometric fidelity.</li>
+            <li><strong>Stone Setting Control:</strong> Hand-setting performed under high-magnification stereomicroscopes with secure bead or claw mountings.</li>
+            <li><strong>Laser Markings:</strong> Laser-engraved alloy fineness hallmarks (750 for 18k, 585 for 14k, 950 for Pt) and customer-specified trademark stamps.</li>
+          </ul>
+        </div>
+
+        <!-- Tab 2: Packaging -->
+        <div class="tab-pane" id="tabPackaging">
+          <h3>International Export Boxing</h3>
+          <p>To withstand long-distance shipping, bulk orders are packed in heavy-duty moisture-resistant chambers with secure double-seal tracking tags.</p>
+          <ul class="spec-detail-list">
+            <li><strong>Individual Unit Packaging:</strong> Anti-tarnish velvet boxes or polybag sleeves per client brand guidelines.</li>
+            <li><strong>Outer Freight Casing:</strong> Corrugated steel-clad export crates filled with high-impact foam protection barriers.</li>
+            <li><strong>Insurance & Air Transport:</strong> Dispatched via fully-insured Malca-Amit or Brinks global luxury logistics networks.</li>
+          </ul>
+        </div>
+
+        <!-- Tab 3: Compliance -->
+        <div class="tab-pane" id="tabCompliance">
+          <h3>Certified Ethical Chain of Custody</h3>
+          <p>We believe in strict ethical standards, complying with global human rights laws and responsible metal sourcing frameworks.</p>
+          <ul class="spec-detail-list">
+            <li><strong>Responsible Jewellery Council (RJC):</strong> Materials are sourced from audited foundries matching certified COP standards.</li>
+            <li><strong>Conflict-Free Gems:</strong> Every diamond incorporates Kimberley Process System of Warranties (SoW) validation.</li>
+            <li><strong>Anti-Money Laundering (AML):</strong> Fully compliant with international financial export protocols and commercial declarations.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products Carousel -->
+  <section class="related-products-section reveal" id="relatedProducts">
+    <div class="container">
+      <span class="subtitle">You May Also Like</span>
+      <h2>More From This Collection</h2>
+      
+      <div class="products-grid" id="relatedProductsGrid">
+        <!-- Dynamically populated with 3 recommended products -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Modal Overlay (Triggered by JS) -->
+  <div class="modal-overlay" id="successModal" aria-hidden="true" role="dialog">
+    <div class="modal-box">
+      <span class="modal-close" aria-label="Close dialog">&times;</span>
+      <div class="modal-icon"><i class="fa-solid fa-circle-check"></i></div>
+      <h3 id="modalTitle">Successfully Submitted</h3>
+      <p id="modalText">We have processed your request. An advisor will contact you shortly.</p>
+      <button class="btn btn-secondary" onclick="document.getElementById('successModal').classList.remove('active')">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer id="siteFooter">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand Info -->
+        <div class="footer-col">
+          <h3 class="footer-logo">AURELIA<span>.</span></h3>
+          <p>Fine jewelry manufacturer and diamond exporter, supplying certified pieces to individual buyers, retail stores, and importers worldwide.</p>
+          <div class="social-links">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <!-- Col 2: Sourcing Links -->
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <nav class="footer-links" aria-label="Footer Navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="collections.html">Collections</a>
+            <a href="diamonds.html">Diamonds</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <!-- Col 3: Sourcing Assistance -->
+        <div class="footer-col">
+          <h4>Assistance</h4>
+          <nav class="footer-links" aria-label="Customer Services">
+            <a href="contact.html">Custom & Bespoke Orders</a>
+            <a href="collections.html">Wholesale & MOQs</a>
+            <a href="contact.html">Request a Prototype</a>
+            <a href="about.html">Shipping & Export Policy</a>
+          </nav>
+        </div>
+        <!-- Col 4: Newsletter -->
+        <div class="footer-col">
+          <h4>Stay Updated</h4>
+          <p>New collections, diamond arrivals, and trade show dates — a few times a year, nothing more.</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Your email" required aria-label="Newsletter Email Input">
+            <button type="submit" class="newsletter-btn" aria-label="Submit Newsletter"><i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 AURELIA Jewelry Exports. All Rights Reserved. Certified RJC Manufacturer.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/products-data.js?v=2.0"></script>
+  <script src="js/main-b2b.js?v=2.0"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dynamic loading script for details page
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id');
+
+      const notFoundContainer = document.getElementById('productNotFound');
+      const contentContainer = document.getElementById('productDetailsContent');
+      const breadcrumbCurrent = document.getElementById('breadcrumbCurrent');
+
+      if (!productId || typeof PRODUCTS_DATA === 'undefined') {
+        renderNotFound();
+        return;
+      }
+
+      const product = PRODUCTS_DATA.find(p => p.id === productId);
+
+      if (!product) {
+        renderNotFound();
+        return;
+      }
+
+      // Populate Page Content
+      document.title = `${product.name} | AURELIA Jewelry`;
+      breadcrumbCurrent.textContent = product.name;
+
+      // Populate Spec Nodes
+      document.getElementById('productTitle').textContent = product.name;
+      document.getElementById('productCategoryTag').textContent = product.category.toUpperCase();
+      document.getElementById('productMoqBadge').textContent = `MOQ: ${product.moq}`;
+      document.getElementById('productDesc').textContent = product.description;
+
+      document.getElementById('specAlloys').textContent = product.alloys;
+      document.getElementById('specGems').textContent = product.gemstones;
+      document.getElementById('specMoq').textContent = product.moq;
+      document.getElementById('specLead').textContent = product.leadTime;
+      document.getElementById('specPrice').textContent = product.fobPrice;
+
+      // Gallery Showcase
+      const mainShowcaseImg = document.getElementById('mainShowcaseImg');
+      mainShowcaseImg.src = product.image;
+      mainShowcaseImg.alt = product.name;
+
+      // Thumbnail strip creation
+      const galleryThumbnails = document.getElementById('galleryThumbnails');
+      galleryThumbnails.innerHTML = '';
+      if (product.gallery && product.gallery.length > 0) {
+        product.gallery.forEach((imgSrc, idx) => {
+          const thumb = document.createElement('div');
+          thumb.className = `thumbnail-item ${idx === 0 ? 'active' : ''}`;
+          thumb.innerHTML = `<img src="${imgSrc}" alt="${product.name} preview angle ${idx + 1}">`;
+          
+          thumb.addEventListener('click', () => {
+            document.querySelectorAll('.thumbnail-item').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+            mainShowcaseImg.src = imgSrc;
+          });
+          galleryThumbnails.appendChild(thumb);
+        });
+      }
+
+      // CTA Button Binding
+      document.getElementById('btnRequestCad').href = `contact.html?product=${product.id}&v=1.5`;
+      
+      const whatsappQuery = encodeURIComponent(`Hi Aurelia, I'd like a quote for ${product.name}. Could you share specifications and pricing?`);
+      document.getElementById('btnInquireWhatsapp').href = `https://wa.me/919427059390?text=${whatsappQuery}`;
+
+      // Tab Link Click Binding
+      const tabLinks = document.querySelectorAll('.tab-link');
+      const tabPanes = document.querySelectorAll('.tab-pane');
+
+      tabLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          tabLinks.forEach(l => l.classList.remove('active'));
+          tabPanes.forEach(p => p.classList.remove('active'));
+
+          link.classList.add('active');
+          const targetTabId = link.getAttribute('data-tab');
+          document.getElementById(targetTabId).classList.add('active');
+        });
+      });
+
+      // Related Products Rendering
+      const relatedProductsGrid = document.getElementById('relatedProductsGrid');
+      relatedProductsGrid.innerHTML = '';
+
+      // Get 3 items from same category, or fallback to other products
+      let relatedList = PRODUCTS_DATA.filter(p => p.id !== product.id && p.category === product.category);
+      if (relatedList.length < 3) {
+        const fallbacks = PRODUCTS_DATA.filter(p => p.id !== product.id && p.category !== product.category);
+        relatedList = [...relatedList, ...fallbacks].slice(0, 3);
+      } else {
+        relatedList = relatedList.slice(0, 3);
+      }
+
+      relatedList.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <a href="product.html?id=${item.id}" class="product-card-link">
+            <div class="product-img-holder">
+              <span class="product-badge">MOQ: ${item.moq.split(' ')[0]}</span>
+              <img src="${item.image}" alt="${item.name}">
+            </div>
+            <div class="product-info">
+              <span class="product-category">${item.category.toUpperCase()}</span>
+              <h3>${item.name}</h3>
+              <div class="product-specs">
+                <div class="product-spec-item"><span>Metal</span> <span>${item.alloys.split(',')[0]}</span></div>
+                <div class="product-spec-item"><span>Lead Time</span> <span>${item.leadTime}</span></div>
+              </div>
+            </div>
+          </a>
+          <div class="product-footer">
+            <a href="product.html?id=${item.id}" class="product-price">View Details &rarr;</a>
+            <span class="product-inquire-btn" data-product="${item.name}">Inquire &rarr;</span>
+          </div>
+        `;
+        relatedProductsGrid.appendChild(card);
+      });
+
+      // Bind dynamic product-inquire-btn event listeners for related products
+      const inquireButtons = relatedProductsGrid.querySelectorAll('.product-inquire-btn');
+      inquireButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const productName = btn.getAttribute('data-product');
+          const whatsappNumber = '919427059390';
+          const customMessage = encodeURIComponent(`Hi Aurelia, I'd like a quote for ${productName}. Could you share specifications and pricing?`);
+          window.open(`https://wa.me/${whatsappNumber}?text=${customMessage}`, '_blank');
+        });
+      });
+
+      function renderNotFound() {
+        notFoundContainer.classList.remove('hide');
+        contentContainer.classList.add('hide');
+        document.getElementById('productTechnicalInfo').classList.add('hide');
+        document.getElementById('relatedProducts').classList.add('hide');
+      }
+    });
+  </script>
+</body>
+</html>
