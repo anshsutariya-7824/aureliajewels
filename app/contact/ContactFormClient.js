@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import SuccessModal from "@/components/SuccessModal";
 
-export default function ContactFormClient({ info }) {
+export default function ContactFormClient({ info, whatsappNumber }) {
   const searchParams = useSearchParams();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
@@ -53,30 +53,54 @@ export default function ContactFormClient({ info }) {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.company || !formData.message || !formData.consent) {
       alert("Please fill out all required fields.");
       return;
     }
 
-    setModalTitle("Inquiry Submitted");
-    setModalText(
-      `Thank you, ${formData.name}. We have received your wholesale request for ${formData.interest || "manufacturing catalog"}. A corporate account manager from AURELIA will contact you at ${formData.email} within 24 hours with our factory pricing sheet and catalogue.`
-    );
-    setModalOpen(true);
-    
-    // Reset form
-    setFormData({
-      name: "",
-      company: "",
-      email: "",
-      phone: "",
-      volume: "",
-      interest: "",
-      message: "",
-      consent: false,
-    });
+    try {
+      const res = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          company: formData.company,
+          email: formData.email,
+          phone: formData.phone,
+          volume: formData.volume,
+          interest: formData.interest,
+          message: formData.message,
+        }),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setModalTitle("Inquiry Submitted");
+        setModalText(
+          `Thank you, ${formData.name}. We have received your wholesale request for ${formData.interest || "manufacturing catalog"}. A corporate account manager from AURELIA will contact you at ${formData.email} within 24 hours with our factory pricing sheet and catalogue.`
+        );
+        setModalOpen(true);
+        
+        // Reset form
+        setFormData({
+          name: "",
+          company: "",
+          email: "",
+          phone: "",
+          volume: "",
+          interest: "",
+          message: "",
+          consent: false,
+        });
+      } else {
+        alert("Failed to submit inquiry: " + (data.message || "Unknown error"));
+      }
+    } catch (err) {
+      console.error("Error submitting inquiry:", err);
+      alert("Something went wrong while submitting your inquiry. Please try again.");
+    }
   };
 
   return (
@@ -124,7 +148,7 @@ export default function ContactFormClient({ info }) {
           <div style={{ borderTop: "1px solid var(--color-border)", paddingTop: "2rem", marginTop: "1rem", textAlign: "center" }}>
             <p style={{ marginBottom: "1.5rem", fontSize: "0.9rem" }}>Prefer immediate chat? Talk directly with a corporate sourcing manager.</p>
             <a 
-              href="https://wa.me/919427059390?text=Hi%20Aurelia%2C%20I%27d%20like%20to%20request%20more%20details." 
+              href={`https://wa.me/${whatsappNumber || "919427059390"}?text=Hi%20Aurelia%2C%20I%27d%20like%20to%20request%20more%20details.`} 
               className="btn btn-secondary" 
               target="_blank" 
               rel="noopener noreferrer" 

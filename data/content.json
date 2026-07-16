@@ -102,6 +102,13 @@
             "time": "By Appointment Only"
           }
         ]
+      },
+      "settings": {
+        "whatsappNumber": "919427059390",
+        "instagram": "https://instagram.com",
+        "facebook": "https://facebook.com",
+        "linkedin": "https://linkedin.com",
+        "youtube": "https://youtube.com"
       }
     }
   }

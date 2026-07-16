@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import InquireButton from "@/components/InquireButton";
 
-export default function CollectionsCatalog({ initialProducts }) {
+export default function CollectionsCatalog({ initialProducts, whatsappNumber }) {
   const searchParams = useSearchParams();
   const initialFilter = searchParams.get("filter") || "all";
   const [activeFilter, setActiveFilter] = useState(initialFilter);
@@ -78,7 +78,7 @@ export default function CollectionsCatalog({ initialProducts }) {
                 <Link href={`/product/${item.id}`} className="product-price">
                   View Details &rarr;
                 </Link>
-                <InquireButton productName={item.name} />
+                <InquireButton productName={item.name} whatsappNumber={whatsappNumber} />
               </div>
             </div>
           ))

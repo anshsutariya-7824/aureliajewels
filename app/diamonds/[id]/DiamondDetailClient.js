@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { formatImagePath } from "@/lib/utils";
 
-export default function DiamondDetailClient({ diamond, relatedDiamonds }) {
+export default function DiamondDetailClient({ diamond, relatedDiamonds, whatsappNumber }) {
   const [viewMode, setViewMode] = useState("photo"); // "photo" or "video"
 
   const whatsappMsg = encodeURIComponent(
@@ -79,7 +79,7 @@ export default function DiamondDetailClient({ diamond, relatedDiamonds }) {
           {/* CTA Buttons */}
           <div className="detail-actions">
             <a 
-              href={`https://wa.me/919427059390?text=${whatsappMsg}`} 
+              href={`https://wa.me/${whatsappNumber || "919427059390"}?text=${whatsappMsg}`} 
               id="whatsappContactBtn" 
               className="btn-whatsapp" 
               target="_blank" 

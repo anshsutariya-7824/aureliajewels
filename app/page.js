@@ -7,6 +7,7 @@ export const dynamic = "force-dynamic";
 export default async function HomePage() {
   const content = await getContentData();
   const { products, diamonds } = await getProductsData();
+  const whatsappNumber = content?.settings?.whatsappNumber || "919427059390";
 
   // Home configuration defaults
   const homeContent = content.home || {};
@@ -223,7 +224,7 @@ export default async function HomePage() {
                   <Link href={`/product/${item.id}`} className="product-price">
                     View Details &rarr;
                   </Link>
-                  <InquireButton productName={item.name} />
+                  <InquireButton productName={item.name} whatsappNumber={whatsappNumber} />
                 </div>
               </div>
             ))}

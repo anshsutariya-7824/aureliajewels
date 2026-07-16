@@ -1,4 +1,4 @@
-import { getProductsData } from "@/lib/db";
+import { getProductsData, getContentData } from "@/lib/db";
 import CollectionsCatalog from "./CollectionsCatalog";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -7,6 +7,8 @@ export const dynamic = "force-dynamic";
 
 export default async function CollectionsPage() {
   const { products } = await getProductsData();
+  const content = await getContentData();
+  const whatsappNumber = content?.settings?.whatsappNumber || "919427059390";
 
   return (
     <div>
@@ -26,7 +28,7 @@ export default async function CollectionsPage() {
       <section className="catalog-section" id="catalog">
         <div className="container">
           <Suspense fallback={<div style={{ textAlign: "center", padding: "4rem 0" }}>Loading catalog...</div>}>
-            <CollectionsCatalog initialProducts={products} />
+            <CollectionsCatalog initialProducts={products} whatsappNumber={whatsappNumber} />
           </Suspense>
         </div>
       </section>

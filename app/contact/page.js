@@ -13,6 +13,7 @@ export const metadata = {
 export default async function ContactPage() {
   const content = await getContentData();
   const contactContent = content.contact || {};
+  const whatsappNumber = content?.settings?.whatsappNumber || "919427059390";
   const hero = contactContent.hero || {
     subtitle: "Get in Touch",
     title: "Let's talk about your order."
@@ -41,7 +42,7 @@ export default async function ContactPage() {
       <section className="catalog-section">
         <div className="container">
           <Suspense fallback={<div style={{ textAlign: "center", padding: "4rem 0" }}>Loading contact details...</div>}>
-            <ContactFormClient info={info} />
+            <ContactFormClient info={info} whatsappNumber={whatsappNumber} />
           </Suspense>
         </div>
       </section>

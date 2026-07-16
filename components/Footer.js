@@ -5,7 +5,7 @@ import Link from "next/link";
 import SuccessModal from "./SuccessModal";
 import { usePathname } from "next/navigation";
 
-export default function Footer() {
+export default function Footer({ settings }) {
   const pathname = usePathname();
   if (pathname && pathname.startsWith("/admin")) {
     return null;
@@ -33,22 +33,22 @@ export default function Footer() {
             {/* Col 1: Brand Info */}
             <div className="footer-col">
               <h3 className="footer-logo">
-                AURELIA<span>.</span>
+                 AURELIA<span>.</span>
               </h3>
               <p>
                 Fine jewelry manufacturer and diamond exporter, supplying certified pieces to individual buyers, retail stores, and importers worldwide.
               </p>
               <div className="social-links">
-                <a href="#" aria-label="LinkedIn">
+                <a href={settings?.linkedin || "#"} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                   <i className="fab fa-linkedin-in"></i>
                 </a>
-                <a href="#" aria-label="Instagram">
+                <a href={settings?.instagram || "#"} aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                   <i className="fab fa-instagram"></i>
                 </a>
-                <a href="#" aria-label="Facebook">
+                <a href={settings?.facebook || "#"} aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                   <i className="fab fa-facebook-f"></i>
                 </a>
-                <a href="#" aria-label="YouTube">
+                <a href={settings?.youtube || "#"} aria-label="YouTube" target="_blank" rel="noopener noreferrer">
                   <i className="fab fa-youtube"></i>
                 </a>
               </div>

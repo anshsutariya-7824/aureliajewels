@@ -10,6 +10,7 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passcode, setPasscode] = useState("");
   const [passcodeError, setPasscodeError] = useState(false);
+  const [lockModal, setLockModal] = useState({ open: false, success: false, title: "", text: "" });
 
   // Core database state
   const [products, setProducts] = useState([]);
@@ -17,6 +18,7 @@ export default function AdminPage() {
   const [content, setContent] = useState({});
   const [images, setImages] = useState([]);
   const [logs, setLogs] = useState([]);
+  const [inquiries, setInquiries] = useState([]);
 
   // Active sidebar state
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -94,14 +96,22 @@ export default function AdminPage() {
     const defaultPasscode = "admin@123";
     if (passcode === defaultPasscode) {
       localStorage.setItem("aurelia_authenticated", "true");
-      setIsAuthenticated(true);
       setPasscodeError(false);
-      fetchData();
-      showToast("Access Granted", "Welcome to Aurelia Control Center.");
-      addLog("Authentication Successful", "System authorization granted.");
+      setLockModal({
+        open: true,
+        success: true,
+        title: "Access Granted",
+        text: "Welcome to Aurelia Control Center. System authorization granted successfully."
+      });
     } else {
       setPasscodeError(true);
       setPasscode("");
+      setLockModal({
+        open: true,
+        success: false,
+        title: "Access Denied",
+        text: "Incorrect admin authorization passcode. Please check your credentials and try again."
+      });
     }
   };
 
@@ -134,6 +144,13 @@ export default function AdminPage() {
       const imgData = await imgRes.json();
       if (imgData.success) {
         setImages(imgData.images || []);
+      }
+
+      // Fetch Inquiries
+      const inqRes = await fetch("/api/inquiries");
+      const inqData = await inqRes.json();
+      if (inqData.success) {
+        setInquiries(inqData.inquiries || []);
       }
     } catch (e) {
       showToast("Fetch Error", "Failed to synchronize disk database.", "error");
@@ -497,6 +514,14 @@ export default function AdminPage() {
     updatedContent.contact.info.phone = formData.get("contact_phone");
     updatedContent.contact.info.email = formData.get("contact_email");
 
+    // Global Settings & Social Links
+    if (!updatedContent.settings) updatedContent.settings = {};
+    updatedContent.settings.whatsappNumber = formData.get("settings_whatsapp");
+    updatedContent.settings.instagram = formData.get("settings_instagram");
+    updatedContent.settings.facebook = formData.get("settings_facebook");
+    updatedContent.settings.linkedin = formData.get("settings_linkedin");
+    updatedContent.settings.youtube = formData.get("settings_youtube");
+
     try {
       const res = await fetch("/api/content", {
         method: "POST",
@@ -546,6 +571,95 @@ export default function AdminPage() {
             Incorrect admin authorization passcode.
           </div>
         </div>
+
+        {lockModal.open && (
+          <div 
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              background: "rgba(0, 0, 0, 0.85)",
+              backdropFilter: "blur(8px)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: 99999,
+              padding: "1.5rem"
+            }}
+            onClick={() => {
+              if (!lockModal.success) {
+                setLockModal(prev => ({ ...prev, open: false }));
+              }
+            }}
+          >
+            <div 
+              style={{
+                background: "#121214",
+                border: `1px solid ${lockModal.success ? "#28c76f" : "#ea5455"}`,
+                borderRadius: "8px",
+                padding: "2.5rem",
+                width: "100%",
+                maxWidth: "420px",
+                textAlign: "center",
+                boxShadow: "0 20px 45px rgba(0, 0, 0, 0.7)",
+                fontFamily: "'Montserrat', sans-serif"
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div style={{ fontSize: "2.8rem", color: lockModal.success ? "#28c76f" : "#ea5455", marginBottom: "1rem" }}>
+                <i className={lockModal.success ? "fa-solid fa-circle-check" : "fa-solid fa-triangle-exclamation"}></i>
+              </div>
+              <h3 
+                style={{ 
+                  fontFamily: "'Playfair Display', serif", 
+                  fontSize: "1.45rem", 
+                  color: "#ffffff", 
+                  marginBottom: "1rem",
+                  letterSpacing: "1px"
+                }}
+              >
+                {lockModal.title}
+              </h3>
+              <p 
+                style={{ 
+                  color: "#a0a0ab", 
+                  fontSize: "0.92rem", 
+                  lineHeight: "1.6", 
+                  marginBottom: "2rem" 
+                }}
+              >
+                {lockModal.text}
+              </p>
+              <button 
+                onClick={() => {
+                  setLockModal(prev => ({ ...prev, open: false }));
+                  if (lockModal.success) {
+                    setIsAuthenticated(true);
+                    fetchData();
+                    addLog("Authentication Successful", "System authorization granted.");
+                  }
+                }}
+                style={{
+                  background: lockModal.success ? "#28c76f" : "#ea5455",
+                  color: "#ffffff",
+                  border: "none",
+                  borderRadius: "4px",
+                  padding: "0.8rem 2.2rem",
+                  fontSize: "0.9rem",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                  letterSpacing: "1px",
+                  textTransform: "uppercase",
+                  transition: "opacity 0.2s"
+                }}
+              >
+                {lockModal.success ? "Proceed" : "Try Again"}
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -579,6 +693,13 @@ export default function AdminPage() {
             onClick={() => setActiveTab("diamonds")}
           >
             <i className="fa-regular fa-gem"></i> Loose Diamonds
+          </button>
+          <button 
+            type="button"
+            className={`nav-item ${activeTab === "inquiries" ? "active" : ""}`} 
+            onClick={() => setActiveTab("inquiries")}
+          >
+            <i className="fa-solid fa-envelope"></i> Customer Inquiries
           </button>
           <button 
             type="button"
@@ -619,6 +740,8 @@ export default function AdminPage() {
                 ? "Jewelry Products Catalog"
                 : activeTab === "diamonds"
                 ? "Loose Certified Diamonds"
+                : activeTab === "inquiries"
+                ? "Customer Sourcing Inquiries"
                 : activeTab === "content"
                 ? "Page Copy Editor"
                 : activeTab === "media"
@@ -649,21 +772,28 @@ export default function AdminPage() {
             <section className="admin-panel active" id="dashboardPanel">
               {/* Stats Counter blocks */}
               <div className="stats-grid">
-                <div className="stat-card">
+                <div className="stat-card" onClick={() => setActiveTab("products")} style={{ cursor: "pointer" }}>
                   <div className="stat-icon"><i className="fa-solid fa-ring"></i></div>
                   <div className="stat-info">
                     <h3>Jewelry Products</h3>
                     <p id="statProductsCount">{productCount}</p>
                   </div>
                 </div>
-                <div className="stat-card">
+                <div className="stat-card" onClick={() => setActiveTab("diamonds")} style={{ cursor: "pointer" }}>
                   <div className="stat-icon"><i className="fa-solid fa-gem"></i></div>
                   <div className="stat-info">
                     <h3>Loose Diamonds</h3>
                     <p id="statDiamondsCount">{diamondCount}</p>
                   </div>
                 </div>
-                <div className="stat-card">
+                <div className="stat-card" onClick={() => setActiveTab("inquiries")} style={{ cursor: "pointer" }}>
+                  <div className="stat-icon" style={{ background: "rgba(212, 175, 55, 0.1)", color: "var(--color-gold)" }}><i className="fa-solid fa-envelope"></i></div>
+                  <div className="stat-info">
+                    <h3>Customer Inquiries</h3>
+                    <p id="statInquiriesCount">{inquiries.length}</p>
+                  </div>
+                </div>
+                <div className="stat-card" onClick={() => setActiveTab("media")} style={{ cursor: "pointer" }}>
                   <div className="stat-icon"><i className="fa-solid fa-images"></i></div>
                   <div className="stat-info">
                     <h3>Media Library</h3>
@@ -791,16 +921,18 @@ export default function AdminPage() {
                             <span 
                               onClick={() => handleToggleStatus(p.id, p.name, p.isActive)}
                               style={{ 
-                                background: p.isActive !== false ? "var(--color-success)" : "var(--color-error)", 
-                                color: "#fff", 
-                                padding: "2px 8px", 
-                                borderRadius: "4px", 
+                                background: p.isActive !== false ? "rgba(40, 199, 111, 0.12)" : "rgba(234, 84, 85, 0.12)", 
+                                color: p.isActive !== false ? "#28c76f" : "#ea5455", 
+                                border: p.isActive !== false ? "1px solid rgba(40, 199, 111, 0.3)" : "1px solid rgba(234, 84, 85, 0.3)", 
+                                padding: "4px 10px", 
+                                borderRadius: "30px", 
                                 fontSize: "0.72rem", 
                                 fontWeight: "600",
                                 textTransform: "uppercase",
                                 letterSpacing: "0.5px",
                                 cursor: "pointer",
-                                userSelect: "none"
+                                userSelect: "none",
+                                display: "inline-block"
                               }}
                               title="Click to toggle catalog visibility"
                             >
@@ -1052,6 +1184,37 @@ export default function AdminPage() {
                   </div>
                 </div>
 
+                {/* GLOBAL SETTINGS & SOCIAL MEDIA */}
+                <div className="card" style={{ marginBottom: "2rem" }}>
+                  <div className="card-header">
+                    <h2>Global Settings & Social Links</h2>
+                  </div>
+                  <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                    <div className="form-grid">
+                      <div className="form-group">
+                        <label className="form-label">WhatsApp Contact Number (digits only, e.g. 919427059390)</label>
+                        <input type="text" name="settings_whatsapp" className="form-input" defaultValue={content.settings?.whatsappNumber || "919427059390"} />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label">Instagram Link</label>
+                        <input type="text" name="settings_instagram" className="form-input" defaultValue={content.settings?.instagram || "https://instagram.com"} />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label">Facebook Link</label>
+                        <input type="text" name="settings_facebook" className="form-input" defaultValue={content.settings?.facebook || "https://facebook.com"} />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label">LinkedIn Link</label>
+                        <input type="text" name="settings_linkedin" className="form-input" defaultValue={content.settings?.linkedin || "https://linkedin.com"} />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label">YouTube Link</label>
+                        <input type="text" name="settings_youtube" className="form-input" defaultValue={content.settings?.youtube || "https://youtube.com"} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <button type="submit" className="btn btn-primary" style={{ padding: "1rem 2.5rem", fontSize: "1.05rem" }}>
                   Save Copywriting Configurations
                 </button>
@@ -1127,6 +1290,140 @@ export default function AdminPage() {
                       {logs.length === 0 && (
                         <tr>
                           <td colSpan="3" style={{ padding: "2rem", textAlign: "center" }}>No logs recorded in this session.</td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* 7. Customer Inquiries Panel */}
+          {activeTab === "inquiries" && (
+            <section className="admin-panel active" id="inquiriesPanel">
+              <div className="card">
+                <div className="card-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <h2>Submitted Wholesale & Custom Inquiries</h2>
+                  <span style={{ fontSize: "0.85rem", color: "var(--color-gold)", border: "1px solid var(--color-border)", padding: "4px 10px", borderRadius: "20px" }}>
+                    Total: {inquiries.length} inquiries
+                  </span>
+                </div>
+                <div className="table-responsive">
+                  <table className="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Date & Time</th>
+                        <th>Client Details</th>
+                        <th>Contact info</th>
+                        <th>Sourcing Interest</th>
+                        <th>Message</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {inquiries.map((inq) => (
+                        <tr key={inq.id}>
+                          <td style={{ fontSize: "0.8rem", whiteSpace: "nowrap" }}>
+                            <code>{new Date(inq.created_at).toLocaleString()}</code>
+                          </td>
+                          <td>
+                            <strong>{inq.name}</strong>
+                            <div style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", marginTop: "2px" }}>
+                              {inq.company}
+                            </div>
+                          </td>
+                          <td>
+                            <div style={{ fontSize: "0.82rem" }}>
+                              <i className="fa-solid fa-envelope" style={{ marginRight: "6px", width: "12px", color: "var(--color-gold-dark)" }}></i>
+                              <a href={`mailto:${inq.email}`} style={{ color: "inherit", textDecoration: "none" }}>{inq.email}</a>
+                            </div>
+                            {inq.phone && (
+                              <div style={{ fontSize: "0.82rem", marginTop: "4px" }}>
+                                <i className="fa-solid fa-phone" style={{ marginRight: "6px", width: "12px", color: "var(--color-gold-dark)" }}></i>
+                                <a href={`tel:${inq.phone}`} style={{ color: "inherit", textDecoration: "none" }}>{inq.phone}</a>
+                              </div>
+                            )}
+                          </td>
+                          <td>
+                            <span style={{ 
+                              background: "rgba(212, 175, 55, 0.08)", 
+                              color: "var(--color-gold)", 
+                              border: "1px solid rgba(212, 175, 55, 0.2)", 
+                              padding: "2px 8px", 
+                              borderRadius: "4px", 
+                              fontSize: "0.72rem", 
+                              fontWeight: "600",
+                              display: "inline-block"
+                            }}>
+                              {inq.interest}
+                            </span>
+                            {inq.volume && (
+                              <div style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", marginTop: "4px" }}>
+                                Est. Volume: {inq.volume}
+                              </div>
+                            )}
+                          </td>
+                          <td>
+                            <div style={{ 
+                              maxWidth: "320px", 
+                              maxHeight: "80px", 
+                              overflowY: "auto", 
+                              fontSize: "0.82rem", 
+                              lineHeight: "1.4",
+                              color: "var(--color-text-muted)",
+                              whiteSpace: "pre-wrap",
+                              paddingRight: "6px"
+                            }}>
+                              {inq.message}
+                            </div>
+                          </td>
+                          <td>
+                            <div style={{ display: "flex", gap: "0.5rem" }}>
+                              {inq.phone && (
+                                <button 
+                                  onClick={() => {
+                                    const cleanPhone = inq.phone.replace(/\D/g, "");
+                                    const msg = encodeURIComponent(`Hi ${inq.name}, this is Aurelia Jewelry Exports. We received your business inquiry regarding ${inq.interest}.`);
+                                    window.open(`https://wa.me/${cleanPhone}?text=${msg}`, "_blank");
+                                  }}
+                                  className="btn btn-secondary" 
+                                  style={{ padding: "4px 8px", fontSize: "0.75rem", background: "rgba(40, 199, 111, 0.1)", color: "#28c76f", border: "1px solid rgba(40, 199, 111, 0.2)" }}
+                                  title="Chat on WhatsApp"
+                                >
+                                  <i className="fab fa-whatsapp"></i> Chat
+                                </button>
+                              )}
+                              <button 
+                                onClick={async () => {
+                                  if (!confirm("Are you sure you want to delete this customer inquiry?")) return;
+                                  try {
+                                    const res = await fetch(`/api/inquiries/${inq.id}`, { method: "DELETE" });
+                                    const data = await res.json();
+                                    if (data.success) {
+                                      setInquiries(prev => prev.filter(item => item.id !== inq.id));
+                                      showToast("Success", "Inquiry deleted successfully.");
+                                    }
+                                  } catch (e) {
+                                    showToast("Error", "Failed to delete inquiry.");
+                                  }
+                                }}
+                                className="btn btn-danger" 
+                                style={{ padding: "4px 8px", fontSize: "0.75rem" }}
+                                title="Delete Record"
+                              >
+                                <i className="fa-solid fa-trash"></i>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                      {inquiries.length === 0 && (
+                        <tr>
+                          <td colSpan="6" style={{ padding: "4rem 2rem", textAlign: "center", color: "var(--color-text-muted)" }}>
+                            <i className="fa-solid fa-envelope-open" style={{ fontSize: "2rem", marginBottom: "1rem", display: "block", color: "var(--color-border)" }}></i>
+                            No customer inquiries found. Submitted contact forms will appear here.
+                          </td>
                         </tr>
                       )}
                     </tbody>

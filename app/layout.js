@@ -2,6 +2,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import { getContentData } from "@/lib/db";
 
 export const metadata = {
   title: "AURELIA | Fine Jewelry & Certified Diamonds — Manufacturer & Exporter",
@@ -9,7 +10,16 @@ export const metadata = {
   keywords: "jewelry manufacturer, diamond exporter, wholesale jewelry, bespoke jewelry, GIA certified diamonds, gold jewelry factory",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const content = await getContentData();
+  const settings = content?.settings || {
+    whatsappNumber: "919427059390",
+    instagram: "https://instagram.com",
+    facebook: "https://facebook.com",
+    linkedin: "https://linkedin.com",
+    youtube: "https://youtube.com"
+  };
+
   return (
     <html lang="en">
       <head>
@@ -23,8 +33,8 @@ export default function RootLayout({ children }) {
       <body>
         <Header />
         <main>{children}</main>
-        <Footer />
-        <WhatsAppFloat />
+        <Footer settings={settings} />
+        <WhatsAppFloat settings={settings} />
       </body>
     </html>
   );

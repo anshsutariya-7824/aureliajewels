@@ -35,7 +35,8 @@
       "leadTime": "21 Business Days",
       "packaging": "Luxury leather presentation case inside customized secure steel-clad travel sleeves",
       "fobPrice": "Request FOB pricing sheet (rates vary per gemstone carat/weight)",
-      "description": "Designed for premium boutique showcase collections, the Emerald Heritage pendant features a hand-picked natural Colombian emerald center set within a microscopic diamond halo. Every link and clasp is hand-finished by our master bench jewelers, offering complete traceability and stunning visual balance."
+      "description": "Designed for premium boutique showcase collections, the Emerald Heritage pendant features a hand-picked natural Colombian emerald center set within a microscopic diamond halo. Every link and clasp is hand-finished by our master bench jewelers, offering complete traceability and stunning visual balance.",
+      "isActive": true
     },
     {
       "id": "eternal-bangles",

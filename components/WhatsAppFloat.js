@@ -2,12 +2,12 @@
 
 import { usePathname } from "next/navigation";
 
-export default function WhatsAppFloat() {
+export default function WhatsAppFloat({ settings }) {
   const pathname = usePathname();
   if (pathname && pathname.startsWith("/admin")) {
     return null;
   }
-  const whatsappNumber = "919427059390";
+  const whatsappNumber = settings?.whatsappNumber || "919427059390";
   const message = encodeURIComponent("Hi Aurelia, I'm interested in your jewelry & diamonds.");
   const href = `https://wa.me/${whatsappNumber}?text=${message}`;
 

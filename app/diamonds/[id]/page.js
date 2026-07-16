@@ -1,4 +1,4 @@
-import { getProductsData } from "@/lib/db";
+import { getProductsData, getContentData } from "@/lib/db";
 import DiamondDetailClient from "./DiamondDetailClient";
 import Link from "next/link";
 
@@ -27,6 +27,8 @@ export async function generateMetadata({ params }) {
 export default async function DiamondDetailPage({ params }) {
   const resolvedParams = await params;
   const { diamonds } = await getProductsData();
+  const content = await getContentData();
+  const whatsappNumber = content?.settings?.whatsappNumber || "919427059390";
   const targetId = resolvedParams.id;
   const diamond = diamonds.find(
     (d) => d.id.toString() === targetId || d.id === parseInt(targetId)
@@ -75,7 +77,7 @@ export default async function DiamondDetailPage({ params }) {
       {/* Main diamond specs catalog */}
       <section className="catalog-section">
         <div className="container">
-          <DiamondDetailClient diamond={diamond} relatedDiamonds={relatedDiamonds} />
+          <DiamondDetailClient diamond={diamond} relatedDiamonds={relatedDiamonds} whatsappNumber={whatsappNumber} />
         </div>
       </section>
     </div>

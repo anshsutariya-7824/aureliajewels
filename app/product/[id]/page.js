@@ -1,4 +1,4 @@
-import { getProductsData } from "@/lib/db";
+import { getProductsData, getContentData } from "@/lib/db";
 import ProductDetailsClient from "./ProductDetailsClient";
 import Link from "next/link";
 
@@ -24,6 +24,8 @@ export async function generateMetadata({ params }) {
 export default async function ProductPage({ params }) {
   const resolvedParams = await params;
   const { products } = await getProductsData();
+  const content = await getContentData();
+  const whatsappNumber = content?.settings?.whatsappNumber || "919427059390";
   const product = products.find(p => p.id === resolvedParams.id);
 
   if (!product) {
@@ -38,10 +40,10 @@ export default async function ProductPage({ params }) {
     );
   }
 
-  // Get related products (up to 3 matching category, excluding current product)
-  let relatedProducts = products.filter(p => p.id !== product.id && p.category === product.category);
+  // Get related products (up to 3 matching category, excluding current product and inactive products)
+  let relatedProducts = products.filter(p => p.isActive !== false && p.id !== product.id && p.category === product.category);
   if (relatedProducts.length < 3) {
-    const fallbacks = products.filter(p => p.id !== product.id && p.category !== product.category);
+    const fallbacks = products.filter(p => p.isActive !== false && p.id !== product.id && p.category !== product.category);
     relatedProducts = [...relatedProducts, ...fallbacks].slice(0, 3);
   } else {
     relatedProducts = relatedProducts.slice(0, 3);
@@ -64,9 +66,7 @@ export default async function ProductPage({ params }) {
 
       {/* Main product profile */}
       <section className="catalog-section">
-        <div className="container">
-          <ProductDetailsClient product={product} relatedProducts={relatedProducts} />
-        </div>
+        <ProductDetailsClient product={product} relatedProducts={relatedProducts} whatsappNumber={whatsappNumber} />
       </section>
     </div>
   );
