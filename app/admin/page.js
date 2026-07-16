@@ -752,16 +752,7 @@ export default function AdminPage() {
             </h1>
           </div>
           <div className="topbar-actions" id="topbarActions">
-            {activeTab === "products" && (
-              <button className="btn btn-primary" onClick={() => handleOpenProductModal("add")}>
-                <i className="fa-solid fa-plus"></i> Add Product
-              </button>
-            )}
-            {activeTab === "diamonds" && (
-              <button className="btn btn-primary" onClick={() => handleOpenDiamondModal("add")}>
-                <i className="fa-solid fa-plus"></i> Add Diamond
-              </button>
-            )}
+            {/* Action buttons are now positioned inside the respective catalog tab controls */}
           </div>
         </header>
 
@@ -878,18 +869,23 @@ export default function AdminPage() {
                       onChange={(e) => setSearchProduct(e.target.value)}
                     />
                   </div>
-                  <select 
-                    className="filter-select" 
-                    id="filterJewelryCategory"
-                    value={filterProductCat}
-                    onChange={(e) => setFilterProductCat(e.target.value)}
-                  >
-                    <option value="all">All Divisions</option>
-                    <option value="rings">Rings</option>
-                    <option value="necklaces">Necklaces</option>
-                    <option value="bracelets">Bracelets & Bangles</option>
-                    <option value="earrings">Earrings</option>
-                  </select>
+                  <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+                    <select 
+                      className="filter-select" 
+                      id="filterJewelryCategory"
+                      value={filterProductCat}
+                      onChange={(e) => setFilterProductCat(e.target.value)}
+                    >
+                      <option value="all">All Divisions</option>
+                      <option value="rings">Rings</option>
+                      <option value="necklaces">Necklaces</option>
+                      <option value="bracelets">Bracelets & Bangles</option>
+                      <option value="earrings">Earrings</option>
+                    </select>
+                    <button className="btn btn-primary" onClick={() => handleOpenProductModal("add")}>
+                      <i className="fa-solid fa-plus"></i> Add Product
+                    </button>
+                  </div>
                 </div>
 
                 <div className="table-responsive">
@@ -983,24 +979,29 @@ export default function AdminPage() {
                       onChange={(e) => setSearchDiamond(e.target.value)}
                     />
                   </div>
-                  <select 
-                    className="filter-select" 
-                    id="filterDiamondShape"
-                    value={filterDiamondShape}
-                    onChange={(e) => setFilterDiamondShape(e.target.value)}
-                  >
-                    <option value="all">All Shapes</option>
-                    <option value="round">Round</option>
-                    <option value="emerald">Emerald</option>
-                    <option value="princess">Princess</option>
-                    <option value="cushion">Cushion</option>
-                    <option value="oval">Oval</option>
-                    <option value="pear">Pear</option>
-                    <option value="marquise">Marquise</option>
-                    <option value="radiant">Radiant</option>
-                    <option value="asscher">Asscher</option>
-                    <option value="heart">Heart</option>
-                  </select>
+                  <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+                    <select 
+                      className="filter-select" 
+                      id="filterDiamondShape"
+                      value={filterDiamondShape}
+                      onChange={(e) => setFilterDiamondShape(e.target.value)}
+                    >
+                      <option value="all">All Shapes</option>
+                      <option value="round">Round</option>
+                      <option value="emerald">Emerald</option>
+                      <option value="princess">Princess</option>
+                      <option value="cushion">Cushion</option>
+                      <option value="oval">Oval</option>
+                      <option value="pear">Pear</option>
+                      <option value="marquise">Marquise</option>
+                      <option value="radiant">Radiant</option>
+                      <option value="asscher">Asscher</option>
+                      <option value="heart">Heart</option>
+                    </select>
+                    <button className="btn btn-primary" onClick={() => handleOpenDiamondModal("add")}>
+                      <i className="fa-solid fa-plus"></i> Add Diamond
+                    </button>
+                  </div>
                 </div>
 
                 <div className="table-responsive">
@@ -1302,133 +1303,104 @@ export default function AdminPage() {
           {/* 7. Customer Inquiries Panel */}
           {activeTab === "inquiries" && (
             <section className="admin-panel active" id="inquiriesPanel">
-              <div className="card">
-                <div className="card-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div className="card" style={{ background: "transparent", border: "none", boxShadow: "none", padding: 0 }}>
+                <div className="card-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", padding: "0 0 1rem 0" }}>
                   <h2>Submitted Wholesale & Custom Inquiries</h2>
                   <span style={{ fontSize: "0.85rem", color: "var(--color-gold)", border: "1px solid var(--color-border)", padding: "4px 10px", borderRadius: "20px" }}>
                     Total: {inquiries.length} inquiries
                   </span>
                 </div>
-                <div className="table-responsive">
-                  <table className="admin-table">
-                    <thead>
-                      <tr>
-                        <th>Date & Time</th>
-                        <th>Client Details</th>
-                        <th>Contact info</th>
-                        <th>Sourcing Interest</th>
-                        <th>Message</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {inquiries.map((inq) => (
-                        <tr key={inq.id}>
-                          <td style={{ fontSize: "0.8rem", whiteSpace: "nowrap" }}>
-                            <code>{new Date(inq.created_at).toLocaleString()}</code>
-                          </td>
-                          <td>
-                            <strong>{inq.name}</strong>
-                            <div style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", marginTop: "2px" }}>
-                              {inq.company}
+                
+                {inquiries.length === 0 ? (
+                  <div className="inquiries-empty-state" style={{ background: "var(--color-surface)", borderRadius: "12px", border: "1px solid rgba(255, 255, 255, 0.05)" }}>
+                    <i className="fa-solid fa-envelope-open"></i>
+                    <p>No customer inquiries found.</p>
+                  </div>
+                ) : (
+                  <div className="inquiries-grid">
+                    {inquiries.map((inq) => (
+                      <div key={inq.id} className="inquiry-card">
+                        <div className="inquiry-header">
+                          <div>
+                            <h3 className="inquiry-client-name">{inq.name}</h3>
+                            <p className="inquiry-client-company">{inq.company || "Independent Client"}</p>
+                          </div>
+                          <span className="inquiry-interest-badge">
+                            {inq.interest}
+                          </span>
+                        </div>
+
+                        <div className="inquiry-meta-row">
+                          <div className="inquiry-meta-item">
+                            <span>Date Received</span>
+                            <strong>{new Date(inq.created_at).toLocaleString()}</strong>
+                          </div>
+                          {inq.volume && (
+                            <div className="inquiry-meta-item">
+                              <span>Est. Volume</span>
+                              <strong>{inq.volume}</strong>
                             </div>
-                          </td>
-                          <td>
-                            <div style={{ fontSize: "0.82rem" }}>
-                              <i className="fa-solid fa-envelope" style={{ marginRight: "6px", width: "12px", color: "var(--color-gold-dark)" }}></i>
-                              <a href={`mailto:${inq.email}`} style={{ color: "inherit", textDecoration: "none" }}>{inq.email}</a>
+                          )}
+                        </div>
+
+                        <div className="inquiry-message-container">
+                          <span>Inquiry Message</span>
+                          <div className="inquiry-message-box">
+                            {inq.message}
+                          </div>
+                        </div>
+
+                        <div className="inquiry-contacts">
+                          <div className="inquiry-contact-item">
+                            <i className="fa-solid fa-envelope"></i>
+                            <a href={`mailto:${inq.email}`}>{inq.email}</a>
+                          </div>
+                          {inq.phone && (
+                            <div className="inquiry-contact-item">
+                              <i className="fa-solid fa-phone"></i>
+                              <a href={`tel:${inq.phone}`}>{inq.phone}</a>
                             </div>
-                            {inq.phone && (
-                              <div style={{ fontSize: "0.82rem", marginTop: "4px" }}>
-                                <i className="fa-solid fa-phone" style={{ marginRight: "6px", width: "12px", color: "var(--color-gold-dark)" }}></i>
-                                <a href={`tel:${inq.phone}`} style={{ color: "inherit", textDecoration: "none" }}>{inq.phone}</a>
-                              </div>
-                            )}
-                          </td>
-                          <td>
-                            <span style={{ 
-                              background: "rgba(212, 175, 55, 0.08)", 
-                              color: "var(--color-gold)", 
-                              border: "1px solid rgba(212, 175, 55, 0.2)", 
-                              padding: "2px 8px", 
-                              borderRadius: "4px", 
-                              fontSize: "0.72rem", 
-                              fontWeight: "600",
-                              display: "inline-block"
-                            }}>
-                              {inq.interest}
-                            </span>
-                            {inq.volume && (
-                              <div style={{ fontSize: "0.75rem", color: "var(--color-text-muted)", marginTop: "4px" }}>
-                                Est. Volume: {inq.volume}
-                              </div>
-                            )}
-                          </td>
-                          <td>
-                            <div style={{ 
-                              maxWidth: "320px", 
-                              maxHeight: "80px", 
-                              overflowY: "auto", 
-                              fontSize: "0.82rem", 
-                              lineHeight: "1.4",
-                              color: "var(--color-text-muted)",
-                              whiteSpace: "pre-wrap",
-                              paddingRight: "6px"
-                            }}>
-                              {inq.message}
-                            </div>
-                          </td>
-                          <td>
-                            <div style={{ display: "flex", gap: "0.5rem" }}>
-                              {inq.phone && (
-                                <button 
-                                  onClick={() => {
-                                    const cleanPhone = inq.phone.replace(/\D/g, "");
-                                    const msg = encodeURIComponent(`Hi ${inq.name}, this is Aurelia Jewelry Exports. We received your business inquiry regarding ${inq.interest}.`);
-                                    window.open(`https://wa.me/${cleanPhone}?text=${msg}`, "_blank");
-                                  }}
-                                  className="btn btn-secondary" 
-                                  style={{ padding: "4px 8px", fontSize: "0.75rem", background: "rgba(40, 199, 111, 0.1)", color: "#28c76f", border: "1px solid rgba(40, 199, 111, 0.2)" }}
-                                  title="Chat on WhatsApp"
-                                >
-                                  <i className="fab fa-whatsapp"></i> Chat
-                                </button>
-                              )}
-                              <button 
-                                onClick={async () => {
-                                  if (!confirm("Are you sure you want to delete this customer inquiry?")) return;
-                                  try {
-                                    const res = await fetch(`/api/inquiries/${inq.id}`, { method: "DELETE" });
-                                    const data = await res.json();
-                                    if (data.success) {
-                                      setInquiries(prev => prev.filter(item => item.id !== inq.id));
-                                      showToast("Success", "Inquiry deleted successfully.");
-                                    }
-                                  } catch (e) {
-                                    showToast("Error", "Failed to delete inquiry.");
-                                  }
-                                }}
-                                className="btn btn-danger" 
-                                style={{ padding: "4px 8px", fontSize: "0.75rem" }}
-                                title="Delete Record"
-                              >
-                                <i className="fa-solid fa-trash"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                      {inquiries.length === 0 && (
-                        <tr>
-                          <td colSpan="6" style={{ padding: "4rem 2rem", textAlign: "center", color: "var(--color-text-muted)" }}>
-                            <i className="fa-solid fa-envelope-open" style={{ fontSize: "2rem", marginBottom: "1rem", display: "block", color: "var(--color-border)" }}></i>
-                            No customer inquiries found. Submitted contact forms will appear here.
-                          </td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
+                          )}
+                        </div>
+
+                        <div className="inquiry-actions">
+                          {inq.phone && (
+                            <button 
+                              onClick={() => {
+                                const cleanPhone = inq.phone.replace(/\D/g, "");
+                                const msg = encodeURIComponent(`Hi ${inq.name}, this is Aurelia Jewelry Exports. We received your business inquiry regarding ${inq.interest}.`);
+                                window.open(`https://wa.me/${cleanPhone}?text=${msg}`, "_blank");
+                              }}
+                              className="btn btn-secondary inquiry-chat-btn" 
+                              title="Chat on WhatsApp"
+                            >
+                              <i className="fab fa-whatsapp"></i> Chat on WhatsApp
+                            </button>
+                          )}
+                          <button 
+                            onClick={async () => {
+                              if (!confirm("Are you sure you want to delete this customer inquiry?")) return;
+                              try {
+                                const res = await fetch(`/api/inquiries/${inq.id}`, { method: "DELETE" });
+                                const data = await res.json();
+                                if (data.success) {
+                                  setInquiries(prev => prev.filter(item => item.id !== inq.id));
+                                  showToast("Success", "Inquiry deleted successfully.");
+                                }
+                              } catch (e) {
+                                showToast("Error", "Failed to delete inquiry.");
+                              }
+                            }}
+                            className="btn btn-danger inquiry-delete-btn" 
+                            title="Delete Record"
+                          >
+                            <i className="fa-solid fa-trash"></i>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </section>
           )}
@@ -1827,17 +1799,43 @@ export default function AdminPage() {
                       onChange={(e) => setDiamondForm({ ...diamondForm, fluorescence: e.target.value })}
                     />
                   </div>
-                  <div className="form-group">
-                    <label className="form-label">Diamond Render Icon Sourcing</label>
+                  <div className="form-group span-2">
+                    <label className="form-label">Diamond Image Source</label>
                     <select
                       className="form-select-ctrl"
-                      value={diamondForm.image}
-                      onChange={(e) => setDiamondForm({ ...diamondForm, image: e.target.value })}
+                      value={["images/diamond-round.png", "images/diamond-emerald.png", "images/diamond-princess.png"].includes(diamondForm.image) ? diamondForm.image : "custom"}
+                      onChange={(e) => {
+                        if (e.target.value !== "custom") {
+                          setDiamondForm({ ...diamondForm, image: e.target.value });
+                        }
+                      }}
+                      style={{ marginBottom: "1rem" }}
                     >
                       <option value="images/diamond-round.png">Round/Brilliant Render Icon</option>
                       <option value="images/diamond-emerald.png">Emerald/Rectangular Render Icon</option>
                       <option value="images/diamond-princess.png">Princess/Square Render Icon</option>
+                      {!["images/diamond-round.png", "images/diamond-emerald.png", "images/diamond-princess.png"].includes(diamondForm.image) && (
+                        <option value="custom">Custom Uploaded Image</option>
+                      )}
                     </select>
+                    
+                    <div className="image-upload-wrapper">
+                      <i className="fa-solid fa-cloud-arrow-up image-upload-icon"></i>
+                      <div className="image-upload-text"><b>Upload</b> custom stone image or cert photo from device</div>
+                      <input 
+                        type="file" 
+                        className="image-upload-input" 
+                        onChange={(e) => handleUploadImage(e, "diamond")}
+                      />
+                      {diamondForm.image && (
+                        <div className="image-upload-preview" style={{ display: "block" }}>
+                          <img src={formatImagePath(diamondForm.image)} alt="Diamond Preview" />
+                          <div style={{ fontSize: "0.72rem", color: "var(--color-text-muted)", marginTop: "4px" }}>
+                            Current image: <code>{diamondForm.image}</code>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <div className="form-group span-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "0.5rem" }}>
                     <label>
