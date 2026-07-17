@@ -19,7 +19,6 @@ export default function AdminPage() {
   const [images, setImages] = useState([]);
   const [logs, setLogs] = useState([]);
   const [inquiries, setInquiries] = useState([]);
-  const [isSupabase, setIsSupabase] = useState(false);
 
   // Active sidebar state
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -132,7 +131,6 @@ export default function AdminPage() {
       if (prodData.success) {
         setProducts(prodData.products || []);
         setDiamonds(prodData.diamonds || []);
-        setIsSupabase(!!prodData.isSupabase);
       }
 
       // Fetch Copywriting content
@@ -158,63 +156,6 @@ export default function AdminPage() {
     } catch (e) {
       showToast("Fetch Error", "Failed to synchronize disk database.", "error");
       console.error(e);
-    }
-  };
-
-  const handleSyncFromJson = async () => {
-    if (!confirm("Are you sure you want to overwrite the Supabase database with the data/products.json and data/content.json files from Git/local disk? This will replace all live products, diamonds and copywriting content with the git files.")) {
-      return;
-    }
-
-    try {
-      showToast("Syncing...", "Fetching local products.json...");
-      
-      // 1. Fetch local products & diamonds
-      const prodRes = await fetch("/api/products?source=local");
-      const prodData = await prodRes.json();
-      if (!prodData.success) {
-        throw new Error(prodData.message || "Failed to load local products");
-      }
-
-      // 2. Fetch local site content
-      showToast("Syncing...", "Fetching local content.json...");
-      const contentRes = await fetch("/api/content?source=local");
-      const contentData = await contentRes.json();
-      if (!contentData.success) {
-        throw new Error(contentData.message || "Failed to load local content");
-      }
-
-      // 3. Post products and diamonds to database
-      showToast("Syncing...", "Writing products to Supabase...");
-      const saveProdRes = await fetch("/api/products", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ products: prodData.products, diamonds: prodData.diamonds }),
-      });
-      const saveProdData = await saveProdRes.json();
-      if (!saveProdData.success) {
-        throw new Error(saveProdData.message || "Failed to save products to Supabase");
-      }
-
-      // 4. Post content to database
-      showToast("Syncing...", "Writing site content to Supabase...");
-      const saveContentRes = await fetch("/api/content", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: contentData.content }),
-      });
-      const saveContentData = await saveContentRes.json();
-      if (!saveContentData.success) {
-        throw new Error(saveContentData.message || "Failed to save site content to Supabase");
-      }
-
-      // Refresh all state
-      showToast("Sync Complete", "Successfully imported local files into Supabase database.");
-      addLog("Database Synchronization", "Supabase database overwritten with data/*.json templates.");
-      fetchData();
-    } catch (err) {
-      showToast("Sync Error", err.message || "An error occurred during synchronization.");
-      console.error(err);
     }
   };
 
@@ -916,42 +857,6 @@ export default function AdminPage() {
                       <span className="category-count" id="countEarrings">{earringsCount}</span>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Database Sync Control Section */}
-              <div className="card" style={{ marginTop: "1.5rem" }}>
-                <div className="card-header">
-                  <h2>GitHub / Local JSON Database Synchronization</h2>
-                  <span className="badge badge-outline-gold" style={{ fontSize: '0.75rem' }}>
-                    {isSupabase ? "Supabase Mode Active" : "Local Disk Mode Active"}
-                  </span>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '0.5rem' }}>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', lineHeight: '1.6' }}>
-                    If you pushed new product configurations (such as lead times, pricing, or new designs) to GitHub inside 
-                    <code>data/products.json</code> or <code>data/content.json</code>, they are loaded onto Vercel's local disk but not automatically updated in the live Supabase database.
-                  </p>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', lineHeight: '1.6' }}>
-                    Use the control below to overwrite the live Supabase database with the current JSON files from Git. 
-                    <strong style={{ color: 'var(--color-error)' }}> Warning: This will replace all live products, diamonds, and copywriting content with the versions from git.</strong>
-                  </p>
-                  {isSupabase ? (
-                    <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
-                      <button 
-                        type="button" 
-                        className="btn btn-primary" 
-                        onClick={handleSyncFromJson}
-                      >
-                        <i className="fa-solid fa-cloud-arrow-up"></i> Overwrite Database with Git JSON
-                      </button>
-                    </div>
-                  ) : (
-                    <div style={{ padding: '0.75rem', background: 'rgba(255,255,255,0.03)', borderRadius: '6px', fontSize: '0.85rem' }}>
-                      <i className="fa-solid fa-circle-info" style={{ color: 'var(--color-gold)', marginRight: '0.5rem' }}></i>
-                      Database syncing is not required when running in Local Disk Mode, as the app reads directly from local JSON files.
-                    </div>
-                  )}
                 </div>
               </div>
             </section>
