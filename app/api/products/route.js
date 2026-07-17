@@ -5,13 +5,29 @@ import path from "path";
 
 const productsFilePath = path.join(process.cwd(), "data", "products.json");
 
-export async function GET() {
+export async function GET(req) {
   try {
+    const { searchParams } = new URL(req.url);
+    const source = searchParams.get("source");
+
+    if (source === "local") {
+      if (fs.existsSync(productsFilePath)) {
+        const localData = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+        return NextResponse.json({
+          success: true,
+          products: localData.products || [],
+          diamonds: localData.diamonds || [],
+          isSupabase: !!supabase
+        });
+      }
+    }
+
     const data = await getProductsData();
     return NextResponse.json({
       success: true,
       products: data.products || [],
-      diamonds: data.diamonds || []
+      diamonds: data.diamonds || [],
+      isSupabase: !!supabase
     });
   } catch (err) {
     return NextResponse.json({ success: false, message: err.message }, { status: 500 });

@@ -5,12 +5,27 @@ import path from "path";
 
 const contentFilePath = path.join(process.cwd(), "data", "content.json");
 
-export async function GET() {
+export async function GET(req) {
   try {
+    const { searchParams } = new URL(req.url);
+    const source = searchParams.get("source");
+
+    if (source === "local") {
+      if (fs.existsSync(contentFilePath)) {
+        const localContent = JSON.parse(fs.readFileSync(contentFilePath, "utf-8"));
+        return NextResponse.json({
+          success: true,
+          content: localContent.content || localContent,
+          isSupabase: !!supabase
+        });
+      }
+    }
+
     const content = await getContentData();
     return NextResponse.json({
       success: true,
-      content: content || {}
+      content: content || {},
+      isSupabase: !!supabase
     });
   } catch (err) {
     return NextResponse.json({ success: false, message: err.message }, { status: 500 });
