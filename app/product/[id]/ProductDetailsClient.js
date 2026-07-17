@@ -64,7 +64,7 @@ export default function ProductDetailsClient({ product, relatedProducts, whatsap
                 </div>
                 <div className="spec-grid-item full-width">
                   <span className="spec-label"><i className="fa-solid fa-calendar-check"></i> Est. Production Lead</span>
-                  <span className="spec-value" id="specLead">15 Business Days</span>
+                  <span className="spec-value" id="specLead">{product.leadTime}</span>
                 </div>
                 <div className="spec-grid-item full-width price-highlight">
                   <span className="spec-label"><i className="fa-solid fa-shield-halved"></i> Pricing Structure</span>
