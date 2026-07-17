@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS diamonds (
     clarity TEXT,
     color TEXT,
     image TEXT,
+    gallery JSONB DEFAULT '[]'::jsonb,
     is_new BOOLEAN DEFAULT false,
     is_featured BOOLEAN DEFAULT false,
     is_rare BOOLEAN DEFAULT false,

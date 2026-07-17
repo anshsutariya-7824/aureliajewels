@@ -185,7 +185,10 @@
       "polish": "Excellent",
       "symmetry": "Excellent",
       "fluorescence": "None",
-      "certificate": "GIA #8901234567"
+      "certificate": "GIA #8901234567",
+      "gallery": [
+        "images/diamond-round.png"
+      ]
     },
     {
       "id": 2,
@@ -290,7 +293,10 @@
       "polish": "Excellent",
       "symmetry": "Excellent",
       "fluorescence": "None",
-      "certificate": "GIA #4820194857"
+      "certificate": "GIA #4820194857",
+      "gallery": [
+        "images/diamond-round.png"
+      ]
     },
     {
       "id": 7,
@@ -427,6 +433,9 @@
       "clarity": "IF",
       "color": "D",
       "image": "images/diamond-round.png",
+      "gallery": [
+        "images/diamond-round.png"
+      ],
       "isNew": true,
       "isFeatured": true,
       "isRare": true,

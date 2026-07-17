@@ -105,7 +105,7 @@ export default function ContactFormClient({ info, whatsappNumber }) {
 
   return (
     <>
-      <div className="diamond-catalog-layout" style={{ gap: "4rem" }}>
+      <div className="contact-grid">
         {/* Column 1: Info Panel */}
         <div className="contact-info-panel reveal active">
           <div className="contact-info-item">
@@ -145,8 +145,8 @@ export default function ContactFormClient({ info, whatsappNumber }) {
             </div>
           </div>
 
-          <div style={{ borderTop: "1px solid var(--color-border)", paddingTop: "2rem", marginTop: "1rem", textAlign: "center" }}>
-            <p style={{ marginBottom: "1.5rem", fontSize: "0.9rem" }}>Prefer immediate chat? Talk directly with a corporate sourcing manager.</p>
+          <div className="contact-whatsapp-box">
+            <p>Prefer immediate chat? Talk directly with a corporate sourcing manager.</p>
             <a 
               href={`https://wa.me/${whatsappNumber || "919427059390"}?text=Hi%20Aurelia%2C%20I%27d%20like%20to%20request%20more%20details.`} 
               className="btn btn-secondary" 
@@ -292,7 +292,7 @@ export default function ContactFormClient({ info, whatsappNumber }) {
         </div>
         <div className="map-container cert-frame reveal active">
           <iframe 
-            src="https://maps.google.com/maps?q=742%20Rue%20du%20Faubourg%20Saint-Honor%C3%A9%2075008%20Paris%20France&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            src={info.mapUrl || "https://maps.google.com/maps?q=742%20Rue%20du%20Faubourg%20Saint-Honor%C3%A9%2075008%20Paris%20France&t=&z=15&ie=UTF8&iwloc=&output=embed"} 
             width="100%" 
             height="450" 
             style={{ border: 0 }}

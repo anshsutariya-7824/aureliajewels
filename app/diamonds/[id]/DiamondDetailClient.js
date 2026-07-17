@@ -5,13 +5,15 @@ import Link from "next/link";
 import { formatImagePath } from "@/lib/utils";
 
 export default function DiamondDetailClient({ diamond, relatedDiamonds, whatsappNumber }) {
-  const [viewMode, setViewMode] = useState("photo"); // "photo" or "video"
+  const [activeImage, setActiveImage] = useState(diamond.image);
 
   const whatsappMsg = encodeURIComponent(
     `Hi Aurelia Exports, I'm interested in this GIA certified diamond: ${diamond.name} (${diamond.certificate})`
   );
 
   const contactUrl = `/contact?product=${encodeURIComponent(diamond.name)}`;
+
+  const gallery = diamond.gallery && diamond.gallery.length > 0 ? diamond.gallery : (diamond.image ? [diamond.image] : []);
 
   return (
     <div>
@@ -20,44 +22,24 @@ export default function DiamondDetailClient({ diamond, relatedDiamonds, whatsapp
         <div className="detail-left reveal active">
           <div className="detail-img-box">
             <img 
-              src={formatImagePath(diamond.image)} 
+              src={formatImagePath(activeImage)} 
               id="detailImage" 
               alt={`${diamond.name} loose diamond showcase`}
-              style={
-                viewMode === "video"
-                  ? {
-                      animation: "diamondSpin 8s infinite linear",
-                    }
-                  : {}
-              }
             />
           </div>
-          <div className="detail-media-tabs">
-            <button 
-              className={`media-tab-btn ${viewMode === "photo" ? "active" : ""}`}
-              onClick={() => setViewMode("photo")}
-              aria-label="View photo"
-            >
-              Photo
-            </button>
-            <button 
-              className={`media-tab-btn ${viewMode === "video" ? "active" : ""}`}
-              onClick={() => setViewMode("video")}
-              aria-label="View spin video"
-            >
-              Video
-            </button>
-          </div>
           
-          {/* Spin Keyframes injected into layout dynamically */}
-          {viewMode === "video" && (
-            <style jsx global>{`
-              @keyframes diamondSpin {
-                0% { transform: perspective(800px) rotateY(0deg); }
-                50% { transform: perspective(800px) rotateY(180deg); }
-                100% { transform: perspective(800px) rotateY(360deg); }
-              }
-            `}</style>
+          {gallery.length > 1 && (
+            <div className="thumbnail-strip" id="galleryThumbnails" style={{ justifyContent: "center" }}>
+              {gallery.map((imgSrc, idx) => (
+                <div 
+                  key={idx} 
+                  className={`thumbnail-item ${activeImage === imgSrc ? "active" : ""}`}
+                  onClick={() => setActiveImage(imgSrc)}
+                >
+                  <img src={formatImagePath(imgSrc)} alt={`${diamond.name} preview angle ${idx + 1}`} />
+                </div>
+              ))}
+            </div>
           )}
         </div>
 

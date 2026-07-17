@@ -67,6 +67,7 @@ export async function POST(req) {
           clarity: d.clarity,
           color: d.color,
           image: d.image,
+          gallery: d.gallery || [],
           is_new: d.isNew || false,
           is_featured: d.isFeatured || false,
           is_rare: d.isRare || false,

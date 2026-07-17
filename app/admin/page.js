@@ -62,6 +62,7 @@ export default function AdminPage() {
     clarity: "VS1",
     color: "E",
     image: "images/diamond-round.png",
+    gallery: [],
     isNew: false,
     isFeatured: false,
     isRare: false,
@@ -378,7 +379,10 @@ export default function AdminPage() {
   // Diamonds CRUD handlers
   const handleOpenDiamondModal = (type, data = null) => {
     if (type === "edit" && data) {
-      setDiamondForm({ ...data });
+      setDiamondForm({ 
+        ...data,
+        gallery: data.gallery && Array.isArray(data.gallery) ? data.gallery : (data.image ? [data.image] : [])
+      });
     } else {
       setDiamondForm({
         id: "",
@@ -389,6 +393,7 @@ export default function AdminPage() {
         clarity: "VS1",
         color: "E",
         image: "images/diamond-round.png",
+        gallery: [],
         isNew: false,
         isFeatured: false,
         isRare: false,
@@ -413,7 +418,8 @@ export default function AdminPage() {
       const newDiamond = { 
         ...diamondForm, 
         id: Date.now(),
-        carat: parseFloat(diamondForm.carat) || 1.0 
+        carat: parseFloat(diamondForm.carat) || 1.0,
+        gallery: diamondForm.gallery && diamondForm.gallery.length > 0 ? diamondForm.gallery : (diamondForm.image ? [diamondForm.image] : []) 
       };
       updatedDiamonds.push(newDiamond);
       addLog("Added Diamond", `Created GIA spec item: ${newDiamond.name}`);
@@ -422,7 +428,8 @@ export default function AdminPage() {
       if (idx > -1) {
         const updatedDiamond = { 
           ...diamondForm,
-          carat: parseFloat(diamondForm.carat) || 1.0 
+          carat: parseFloat(diamondForm.carat) || 1.0,
+          gallery: diamondForm.gallery && diamondForm.gallery.length > 0 ? diamondForm.gallery : (diamondForm.image ? [diamondForm.image] : []) 
         };
         updatedDiamonds[idx] = updatedDiamond;
         addLog("Edited Diamond", `Updated diamond specs: ${updatedDiamond.name}`);
@@ -513,6 +520,7 @@ export default function AdminPage() {
     updatedContent.contact.info.address = formData.get("contact_address");
     updatedContent.contact.info.phone = formData.get("contact_phone");
     updatedContent.contact.info.email = formData.get("contact_email");
+    updatedContent.contact.info.mapUrl = formData.get("contact_map_url");
 
     // Global Settings & Social Links
     if (!updatedContent.settings) updatedContent.settings = {};
@@ -1181,6 +1189,10 @@ export default function AdminPage() {
                         <label className="form-label">Direct Email</label>
                         <input type="email" name="contact_email" className="form-input" defaultValue={content.contact?.info?.email || ""} />
                       </div>
+                      <div className="form-group span-2">
+                        <label className="form-label">Google Map Embed Link (iframe src URL)</label>
+                        <input type="text" name="contact_map_url" className="form-input" defaultValue={content.contact?.info?.mapUrl || ""} placeholder="e.g. https://maps.google.com/maps?q=..." />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1835,6 +1847,104 @@ export default function AdminPage() {
                           </div>
                         </div>
                       )}
+                    </div>
+                  </div>
+
+                  {/* Multiple Gallery Images for Diamonds */}
+                  <div className="form-group span-2" style={{ borderTop: "1px dashed var(--color-border)", paddingTop: "1.5rem", marginTop: "1rem" }}>
+                    <label className="form-label" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span>Diamond Gallery Images ({diamondForm.gallery?.length || 0})</span>
+                      <span style={{ fontSize: "0.75rem", color: "var(--color-gold)", textTransform: "none" }}>These are additional angles/photos shown on the details page.</span>
+                    </label>
+                    
+                    {/* Visual Grid of current gallery images with delete icon */}
+                    {diamondForm.gallery && diamondForm.gallery.length > 0 && (
+                      <div style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap", marginBottom: "1rem" }}>
+                        {diamondForm.gallery.map((img, idx) => (
+                          <div 
+                            key={idx} 
+                            style={{ 
+                              position: "relative", 
+                              width: "80px", 
+                              height: "80px", 
+                              border: "1px solid var(--color-border)", 
+                              borderRadius: "4px",
+                              padding: "4px",
+                              background: "rgba(255,255,255,0.05)"
+                            }}
+                          >
+                            <img src={formatImagePath(img)} style={{ width: "100%", height: "100%", objectFit: "cover" }} alt="" />
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setDiamondForm((prev) => ({
+                                  ...prev,
+                                  gallery: prev.gallery.filter((_, i) => i !== idx),
+                                }));
+                              }}
+                              style={{
+                                position: "absolute",
+                                top: "-5px",
+                                right: "-5px",
+                                background: "var(--color-error)",
+                                color: "#fff",
+                                border: "none",
+                                borderRadius: "50%",
+                                width: "20px",
+                                height: "20px",
+                                cursor: "pointer",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                fontSize: "0.8rem",
+                                fontWeight: "bold"
+                              }}
+                              title="Remove image from gallery"
+                            >
+                              &times;
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="image-upload-wrapper" style={{ minHeight: "80px", padding: "1.2rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+                      <i className="fa-solid fa-images image-upload-icon" style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}></i>
+                      <div className="image-upload-text" style={{ fontSize: "0.8rem" }}>
+                        Click to <b>upload gallery images</b> (select multiple files)
+                      </div>
+                      <input 
+                        type="file" 
+                        className="image-upload-input" 
+                        multiple
+                        onChange={async (e) => {
+                          const files = Array.from(e.target.files || []);
+                          const uploadedPaths = [];
+                          for (const file of files) {
+                            const formData = new FormData();
+                            formData.append("image", file);
+                            try {
+                              const res = await fetch("/api/upload", {
+                                method: "POST",
+                                body: formData,
+                              });
+                              const data = await res.json();
+                              if (data.success) {
+                                uploadedPaths.push(data.filepath);
+                              }
+                            } catch (err) {
+                              console.error("Gallery file upload failure", err);
+                            }
+                          }
+                          if (uploadedPaths.length > 0) {
+                            setDiamondForm((prev) => ({
+                              ...prev,
+                              gallery: [...(prev.gallery || []), ...uploadedPaths],
+                            }));
+                            showToast("Uploaded", `Added ${uploadedPaths.length} image(s) to diamond gallery.`);
+                          }
+                        }}
+                      />
                     </div>
                   </div>
                   <div className="form-group span-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "0.5rem" }}>
