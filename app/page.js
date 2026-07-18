@@ -143,6 +143,38 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Wholesale & Trade Section */}
+      <section className="wholesale-section" id="wholesaleB2B" style={{ borderTop: "1px solid var(--paper-line)", padding: "6rem 0" }}>
+        <div className="container">
+          <div className="grid-2" style={{ direction: "rtl" }}>
+            <div className="wholesale-img-wrapper reveal active cert-frame" style={{ direction: "ltr" }}>
+              <img src="images/wholesale-b2b.png" alt="Aurelia wholesale diamond sourcing and bulk jewelry manufacturing setup" />
+            </div>
+            <div className="wholesale-content reveal active" style={{ direction: "ltr" }}>
+              <span className="subtitle">B2B & Sourcing</span>
+              <h2>Wholesale & Sourcing Partnerships</h2>
+              <p style={{ marginBottom: "1.5rem" }}>
+                Aurelia partners with fine jewelry brands, retail chains, and boutique importers to deliver reliable volume casting and precision stone sourcing. By integrating in-house CAD modeling, casting, and certified grading, we assure absolute consistency from sample to final delivery.
+              </p>
+              <ul className="spec-detail-list" style={{ marginBottom: "2rem", display: "grid", gap: "0.8rem" }}>
+                <li style={{ position: "relative", paddingLeft: "1.5rem" }}>
+                  <strong>Factory-Direct Sourcing:</strong> Calibrated diamond parcels, custom CAD mountings, and direct pricing sheets.
+                </li>
+                <li style={{ position: "relative", paddingLeft: "1.5rem" }}>
+                  <strong>Ethical Supply Chain:</strong> 100% RJC-certified metals and Kimberley Process conflict-free diamonds.
+                </li>
+                <li style={{ position: "relative", paddingLeft: "1.5rem" }}>
+                  <strong>Global Sourcing Support:</strong> Insured international shipping and customs clearing handled by our logistics team.
+                </li>
+              </ul>
+              <Link href="/contact" className="btn btn-primary" id="wholesaleContactBtn">
+                Apply for Trade Account &rarr;
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Diamond Sourcing Section */}
       <section className="featured-products-section" id="homeDiamonds" style={{ borderTop: "1px solid var(--paper-line)" }}>
         <div className="container">
