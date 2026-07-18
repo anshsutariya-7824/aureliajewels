@@ -7,7 +7,7 @@ import { getContentData } from "@/lib/db";
 export const metadata = {
   title: "AURELIA | Fine Jewelry & Certified Diamonds — Manufacturer & Exporter",
   description: "AURELIA crafts and exports certified 18k gold and diamond jewelry — from single bespoke pieces to bulk wholesale orders — for retail buyers, importers, and jewelry stores worldwide.",
-  keywords: "jewelry manufacturer, diamond exporter, wholesale jewelry, bespoke jewelry, GIA certified diamonds, gold jewelry factory",
+  keywords: "jewelry manufacturer, diamond exporter, wholesale jewelry, bespoke jewelry, IGI certified diamonds, gold jewelry factory",
 };
 
 export default async function RootLayout({ children }) {

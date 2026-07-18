@@ -1029,20 +1029,61 @@ footer { background: var(--ink); color: rgba(246,244,238,0.75); padding: clamp(4
   color: var(--ink-soft);
 }
 
-.contact-form-panel { background: var(--paper-deep); border: 1px solid var(--paper-line); padding: clamp(1.8rem, 4vw, 3rem); }
-.form-control {
-  width: 100%; padding: 0.85rem 1rem; background: var(--paper);
-  border: 1px solid var(--paper-line-heavy); color: var(--ink); transition: var(--transition-fast);
+.contact-form-panel { 
+  background: var(--paper-deep); 
+  border: 1px solid var(--paper-line); 
+  padding: clamp(1.8rem, 4vw, 3rem); 
+  box-shadow: 0 10px 30px rgba(21, 22, 26, 0.03);
 }
-.form-control:focus { outline: none; border-color: var(--gold); }
+.form-control {
+  width: 100%; 
+  padding: 0.9rem 1.1rem; 
+  background: var(--paper);
+  border: 1px solid var(--paper-line-heavy); 
+  color: var(--ink); 
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: var(--transition-fast);
+  border-radius: 0px;
+}
+.form-control::placeholder {
+  color: var(--ink-soft);
+  opacity: 0.45;
+  font-size: 0.85rem;
+}
+.form-control:hover {
+  border-color: var(--gold);
+}
+.form-control:focus { 
+  outline: none; 
+  border-color: var(--gold); 
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(169, 129, 74, 0.06);
+}
+select.form-control {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2315161A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 0.8em;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
 .form-group { position: relative; margin-bottom: 1.3rem; }
 .form-group .form-label {
-  display: block; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--ink-soft); margin-top: 0.5rem;
+  display: block; 
+  font-family: var(--font-mono); 
+  font-size: 0.68rem; 
+  letter-spacing: 0.1em; 
+  text-transform: uppercase;
+  color: var(--ink); 
+  margin-bottom: 0.45rem;
+  margin-top: 0;
+  font-weight: 500;
 }
 .checkbox-group { display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 1.6rem; }
-.checkbox-group input { margin-top: 0.2rem; accent-color: var(--garnet); width: 15px; height: 15px; }
-.checkbox-group label { font-size: 0.82rem; color: var(--ink-soft); }
+.checkbox-group input { margin-top: 0.25rem; accent-color: var(--garnet); width: 16px; height: 16px; cursor: pointer; }
+.checkbox-group label { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.4; user-select: none; }
 
 /* Utility */
 .text-center { text-align: center; }

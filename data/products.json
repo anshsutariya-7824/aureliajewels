@@ -12,7 +12,7 @@
       ],
       "moq": "10 Pieces",
       "alloys": "14k / 18k Yellow Gold, White Gold, Rose Gold, Platinum (PT950)",
-      "gemstones": "GIA Certified Round Brilliant Diamonds, G-H Color, VS1-SI2 Clarity, Excellent Cut",
+      "gemstones": "IGI Certified Round Brilliant Diamonds, G-H Color, VS1-SI2 Clarity, Excellent Cut",
       "leadTime": "10-12 Business Days",
       "packaging": "Premium wooden double ring boxes inside custom export cartons (RJC audited packaging materials)",
       "fobPrice": "Starting at $1,250 / unit (depends on metal choice and carat size)",
@@ -158,7 +158,7 @@
       ],
       "moq": "10 Pieces",
       "alloys": "14k / 18k Yellow Gold, White Gold, Rose Gold, Platinum",
-      "gemstones": "GIA Certified Diamonds",
+      "gemstones": "IGI Certified Diamonds",
       "leadTime": "10-12 Business Days",
       "packaging": "Premium wooden ring boxes inside custom export cartons",
       "fobPrice": "Starting at $1,600 / unit",
@@ -185,7 +185,7 @@
       "polish": "Excellent",
       "symmetry": "Excellent",
       "fluorescence": "None",
-      "certificate": "GIA #8901234567",
+      "certificate": "IGI #8901234567",
       "gallery": [
         "images/diamond-round.png"
       ]
@@ -209,7 +209,7 @@
       "polish": "Excellent",
       "symmetry": "Excellent",
       "fluorescence": "None",
-      "certificate": "GIA #5648210349"
+      "certificate": "IGI #5648210349"
     },
     {
       "id": 3,
@@ -230,7 +230,7 @@
       "polish": "Excellent",
       "symmetry": "Very Good",
       "fluorescence": "Faint",
-      "certificate": "GIA #2349018573"
+      "certificate": "IGI #2349018573"
     },
     {
       "id": 4,
@@ -251,7 +251,7 @@
       "polish": "Excellent",
       "symmetry": "Excellent",
       "fluorescence": "None",
-      "certificate": "GIA #1059483726"
+      "certificate": "IGI #1059483726"
     },
     {
       "id": 5,
@@ -272,7 +272,7 @@
       "polish": "Excellent",
       "symmetry": "Very Good",
       "fluorescence": "None",
-      "certificate": "GIA #9384720185"
+      "certificate": "IGI #9384720185"
     },
     {
       "id": 6,
@@ -293,7 +293,7 @@
       "polish": "Excellent",
       "symmetry": "Excellent",
       "fluorescence": "None",
-      "certificate": "GIA #4820194857",
+      "certificate": "IGI #4820194857",
       "gallery": [
         "images/diamond-round.png"
       ]
@@ -317,7 +317,7 @@
       "polish": "Excellent",
       "symmetry": "Excellent",
       "fluorescence": "None",
-      "certificate": "GIA #6830294812"
+      "certificate": "IGI #6830294812"
     },
     {
       "id": 8,
@@ -338,7 +338,7 @@
       "polish": "Excellent",
       "symmetry": "Very Good",
       "fluorescence": "Medium Blue",
-      "certificate": "GIA #1938472039"
+      "certificate": "IGI #1938472039"
     },
     {
       "id": 9,
@@ -359,7 +359,7 @@
       "polish": "Very Good",
       "symmetry": "Very Good",
       "fluorescence": "None",
-      "certificate": "GIA #7482019483"
+      "certificate": "IGI #7482019483"
     },
     {
       "id": 10,
@@ -380,7 +380,7 @@
       "polish": "Excellent",
       "symmetry": "Excellent",
       "fluorescence": "None",
-      "certificate": "GIA #3820194857"
+      "certificate": "IGI #3820194857"
     },
     {
       "id": 11,
@@ -401,7 +401,7 @@
       "polish": "Very Good",
       "symmetry": "Good",
       "fluorescence": "Faint",
-      "certificate": "GIA #5839201948"
+      "certificate": "IGI #5839201948"
     },
     {
       "id": 12,
@@ -422,7 +422,7 @@
       "polish": "Excellent",
       "symmetry": "Very Good",
       "fluorescence": "None",
-      "certificate": "GIA #2938401948"
+      "certificate": "IGI #2938401948"
     },
     {
       "id": 13,
@@ -446,7 +446,7 @@
       "polish": "Excellent",
       "symmetry": "Excellent",
       "fluorescence": "None",
-      "certificate": "GIA #7104928374"
+      "certificate": "IGI #7104928374"
     },
     {
       "id": 14,
@@ -467,7 +467,7 @@
       "polish": "Excellent",
       "symmetry": "Excellent",
       "fluorescence": "None",
-      "certificate": "GIA #4829301948"
+      "certificate": "IGI #4829301948"
     },
     {
       "id": 15,
@@ -488,7 +488,7 @@
       "polish": "Very Good",
       "symmetry": "Very Good",
       "fluorescence": "None",
-      "certificate": "GIA #8392019485"
+      "certificate": "IGI #8392019485"
     }
   ]
 }

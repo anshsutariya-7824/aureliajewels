@@ -19,8 +19,8 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: `${diamond.name} | GIA Certified Diamond | AURELIA Jewelry`,
-    description: `GIA Certified ${diamond.name}. Specs: Cut: ${diamond.cut}, Clarity: ${diamond.clarity}, Color: ${diamond.color}, Carat: ${diamond.carat} ct. Certified conflict-free.`,
+    title: `${diamond.name} | IGI Certified Diamond | AURELIA Jewelry`,
+    description: `IGI Certified ${diamond.name}. Specs: Cut: ${diamond.cut}, Clarity: ${diamond.clarity}, Color: ${diamond.color}, Carat: ${diamond.carat} ct. Certified conflict-free.`,
   };
 }
 

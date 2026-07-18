@@ -147,7 +147,7 @@ export default async function HomePage() {
       <section className="featured-products-section" id="homeDiamonds" style={{ borderTop: "1px solid var(--paper-line)" }}>
         <div className="container">
           <div className="section-head center" style={{ marginLeft: "auto", marginRight: "auto" }}>
-            <span className="subtitle">GIA Assured</span>
+            <span className="subtitle">IGI Assured</span>
             <h2>Loose Diamonds, Individually Graded</h2>
             <p style={{ maxWidth: "620px", margin: "1rem auto 0" }}>
               A rotating inventory of calibrated parcels and single certified stones. Have any piece in our collections set with the diamond of your choice.
@@ -279,7 +279,7 @@ export default async function HomePage() {
                 <i className="fa-solid fa-star"></i>
               </div>
               <blockquote className="testimonial-quote">
-                "Aurelia has transformed our inventory cycle. Their 3D prototyping is accurate down to the micron, and the finished 18k pieces match our CAD files flawlessly. The GIA-certified stones are consistently top-grade."
+                "Aurelia has transformed our inventory cycle. Their 3D prototyping is accurate down to the micron, and the finished 18k pieces match our CAD files flawlessly. The IGI-certified stones are consistently top-grade."
               </blockquote>
               <div className="testimonial-meta">
                 <span className="client-name">Marcus Vance</span>

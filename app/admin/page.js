@@ -46,7 +46,7 @@ export default function AdminPage() {
     image: "",
     moq: "10 Pieces",
     alloys: "14k / 18k Yellow Gold, White Gold, Rose Gold, Platinum",
-    gemstones: "GIA Certified Diamonds",
+    gemstones: "IGI Certified Diamonds",
     leadTime: "10-12 Business Days",
     packaging: "Premium wooden ring boxes inside custom export cartons",
     fobPrice: "Starting at $1,250 / unit",
@@ -73,7 +73,7 @@ export default function AdminPage() {
     polish: "Excellent",
     symmetry: "Excellent",
     fluorescence: "None",
-    certificate: "GIA #",
+    certificate: "IGI #",
   });
 
   // Files input references
@@ -255,7 +255,7 @@ export default function AdminPage() {
         isActive: true,
         moq: "10 Pieces",
         alloys: "14k / 18k Yellow Gold, White Gold, Rose Gold, Platinum (PT950)",
-        gemstones: "GIA Certified Diamonds",
+        gemstones: "IGI Certified Diamonds",
         leadTime: "10-12 Business Days",
         packaging: "Premium wooden ring boxes inside custom export cartons",
         fobPrice: "Starting at $1,250 / unit",
@@ -404,7 +404,7 @@ export default function AdminPage() {
         polish: "Excellent",
         symmetry: "Excellent",
         fluorescence: "None",
-        certificate: "GIA #",
+        certificate: "IGI #",
       });
     }
     setDiamondModal({ open: true, type, data });
@@ -422,7 +422,7 @@ export default function AdminPage() {
         gallery: diamondForm.gallery && diamondForm.gallery.length > 0 ? diamondForm.gallery : (diamondForm.image ? [diamondForm.image] : []) 
       };
       updatedDiamonds.push(newDiamond);
-      addLog("Added Diamond", `Created GIA spec item: ${newDiamond.name}`);
+      addLog("Added Diamond", `Created IGI spec item: ${newDiamond.name}`);
     } else {
       const idx = diamonds.findIndex((d) => d.id === diamondModal.data.id);
       if (idx > -1) {
@@ -982,7 +982,7 @@ export default function AdminPage() {
                     <input 
                       type="text" 
                       id="searchDiamonds" 
-                      placeholder="Search GIA certificate or name..."
+                      placeholder="Search IGI certificate or name..."
                       value={searchDiamond}
                       onChange={(e) => setSearchDiamond(e.target.value)}
                     />
@@ -1481,7 +1481,7 @@ export default function AdminPage() {
                     <input
                       type="text"
                       required
-                      placeholder="e.g. GIA Certified Round Brilliant Diamonds"
+                      placeholder="e.g. IGI Certified Round Brilliant Diamonds"
                       className="form-input"
                       value={productForm.gemstones}
                       onChange={(e) => setProductForm({ ...productForm, gemstones: e.target.value })}
@@ -1740,11 +1740,11 @@ export default function AdminPage() {
                     </select>
                   </div>
                   <div className="form-group">
-                    <label className="form-label">GIA Certificate Number *</label>
+                    <label className="form-label">IGI Certificate Number *</label>
                     <input
                       type="text"
                       required
-                      placeholder="e.g. GIA #8293049182"
+                      placeholder="e.g. IGI #8293049182"
                       className="form-input"
                       value={diamondForm.certificate}
                       onChange={(e) => setDiamondForm({ ...diamondForm, certificate: e.target.value })}

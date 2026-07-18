@@ -91,7 +91,7 @@ export default function ProductDetailsClient({ product, relatedProducts, whatsap
 
             <div className="factory-trust-logos">
               <div className="trust-item"><i className="fa-solid fa-award"></i> <span>RJC Audited</span></div>
-              <div className="trust-item"><i className="fa-solid fa-certificate"></i> <span>GIA Assured</span></div>
+              <div className="trust-item"><i className="fa-solid fa-certificate"></i> <span>IGI Assured</span></div>
               <div className="trust-item"><i className="fa-solid fa-globe"></i> <span>Global Freight</span></div>
             </div>
           </div>

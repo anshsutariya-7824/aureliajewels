@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Loose Certified Diamonds | AURELIA Jewelry",
-  description: "Browse GIA certified loose diamonds sorted by carat, color, shape, cut, and clarity.",
+  description: "Browse IGI certified loose diamonds sorted by carat, color, shape, cut, and clarity.",
 };
 
 export default async function DiamondsPage() {
@@ -17,7 +17,7 @@ export default async function DiamondsPage() {
       {/* Page Hero Banner */}
       <section className="page-hero" id="diamondsHero">
         <div className="container">
-          <span className="subtitle">GIA Assured & Conflict-Free</span>
+          <span className="subtitle">IGI Assured & Conflict-Free</span>
           <h1>Every diamond, graded before it ships.</h1>
           <p>
             Filter our loose diamond inventory by shape, carat, cut, clarity, and color. Order a stone on its own, or have it set into any piece in our collections.

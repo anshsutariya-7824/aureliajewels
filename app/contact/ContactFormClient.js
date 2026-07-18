@@ -163,110 +163,118 @@ export default function ContactFormClient({ info, whatsappNumber }) {
         {/* Column 2: Form Panel */}
         <div className="contact-form-panel reveal active">
           <h3>Send Us a Request</h3>
-          <p style={{ marginBottom: "2rem", fontSize: "0.95rem" }}>Tell us what you're looking for — a single custom piece or a wholesale order — and an advisor will follow up with pricing and next steps.</p>
+          <p style={{ marginBottom: "2rem", fontSize: "0.95rem" }}>
+            Specify your requirements — whether a single bespoke custom design or a high-volume trade order. Our corporate sourcing office will respond with pricing, catalogs, and lead times.
+          </p>
           
           <form id="contactForm" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <input 
-                type="text" 
-                id="name" 
-                className="form-control" 
-                placeholder=" " 
-                required 
-                value={formData.name}
-                onChange={handleChange}
-              />
-              <label htmlFor="name" className="form-label">Full Name *</label>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="name" className="form-label">Full Name *</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  className="form-control" 
+                  placeholder="e.g. John Doe" 
+                  required 
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="company" className="form-label">Company / Brand Name *</label>
+                <input 
+                  type="text" 
+                  id="company" 
+                  className="form-control" 
+                  placeholder="e.g. Aurelia Fine Jewelry (Write 'Individual' if personal)" 
+                  required 
+                  value={formData.company}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="email" className="form-label">Email Address *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  className="form-control" 
+                  placeholder="e.g. contact@yourbrand.com" 
+                  required 
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="phone" className="form-label">Phone Number (Optional)</label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  className="form-control" 
+                  placeholder="e.g. +1 (555) 123-4567" 
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="volume" className="form-label">Estimated Order Size *</label>
+                <select 
+                  id="volume" 
+                  className="form-control" 
+                  required
+                  value={formData.volume}
+                  onChange={handleChange}
+                >
+                  <option value="" disabled hidden>Select your order volume</option>
+                  <option value="Single piece">A single custom piece (Bespoke)</option>
+                  <option value="Under 100 units/mo">Under 100 units / month</option>
+                  <option value="100 - 500 units/mo">100 - 500 units / month</option>
+                  <option value="500 - 1000 units/mo">500 - 1000 units / month</option>
+                  <option value="1000+ units/mo">1000+ units / month</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="interest" className="form-label">Primary Sourcing Interest *</label>
+                <select 
+                  id="interest" 
+                  className="form-control" 
+                  required
+                  value={formData.interest}
+                  onChange={handleChange}
+                >
+                  <option value="" disabled hidden>Select an area of interest</option>
+                  <option value="Diamond Rings Sourcing">Diamond Rings Sourcing</option>
+                  <option value="Fine Necklaces Assembly">Fine Necklaces Assembly</option>
+                  <option value="Bangles & Bracelets Sourcing">Bangles & Bracelets Sourcing</option>
+                  <option value="Fine Earrings Sourcing">Fine Earrings Sourcing</option>
+                  <option value="Bespoke Custom Order">Bespoke Custom Order</option>
+                </select>
+              </div>
             </div>
 
             <div className="form-group">
-              <input 
-                type="text" 
-                id="company" 
-                className="form-control" 
-                placeholder=" "
-                required
-                value={formData.company}
-                onChange={handleChange}
-              />
-              <label htmlFor="company" className="form-label">Company Name *</label>
-            </div>
-
-            <div className="form-group">
-              <input 
-                type="email" 
-                id="email" 
-                className="form-control" 
-                placeholder=" " 
-                required 
-                value={formData.email}
-                onChange={handleChange}
-              />
-              <label htmlFor="email" className="form-label">Email Address *</label>
-            </div>
-
-            <div className="form-group">
-              <input 
-                type="tel" 
-                id="phone" 
-                className="form-control" 
-                placeholder=" "
-                value={formData.phone}
-                onChange={handleChange}
-              />
-              <label htmlFor="phone" className="form-label">Phone Number (Optional)</label>
-            </div>
-
-            <div className="form-group">
-              <select 
-                id="volume" 
-                className="form-control" 
-                required
-                value={formData.volume}
-                onChange={handleChange}
-              >
-                <option value="" disabled></option>
-                <option value="Single piece">A single custom piece</option>
-                <option value="Under 100 units/mo">Under 100 units/mo</option>
-                <option value="100 - 500 units/mo">100 - 500 units/mo</option>
-                <option value="500 - 1000 units/mo">500 - 1000 units/mo</option>
-                <option value="1000+ units/mo">1000+ units/mo</option>
-              </select>
-              <label htmlFor="volume" className="form-label">Order Size *</label>
-            </div>
-
-            <div className="form-group">
-              <select 
-                id="interest" 
-                className="form-control" 
-                required
-                value={formData.interest}
-                onChange={handleChange}
-              >
-                <option value="" disabled></option>
-                <option value="Diamond Rings Sourcing">Diamond Rings Sourcing</option>
-                <option value="Fine Necklaces Assembly">Fine Necklaces Assembly</option>
-                <option value="Bangles & Bracelets Sourcing">Bangles & Bracelets Sourcing</option>
-                <option value="Fine Earrings Sourcing">Fine Earrings Sourcing</option>
-                <option value="Bespoke Custom Order">Bespoke Custom Order</option>
-              </select>
-              <label htmlFor="interest" className="form-label">What Are You Interested In? *</label>
-            </div>
-
-            <div className="form-group">
+              <label htmlFor="message" className="form-label">Tell us more about what you need *</label>
               <textarea 
                 id="message" 
                 className="form-control" 
-                placeholder=" " 
+                placeholder="Please describe your specifications: target budget, gemstone types, metal carats (e.g. 14k/18k gold, platinum), or specific custom designs..." 
                 rows="4" 
                 required
                 value={formData.message}
                 onChange={handleChange}
               ></textarea>
-              <label htmlFor="message" className="form-label">Tell us more about what you need *</label>
             </div>
 
-            <div className="checkbox-group">
+            <div className="checkbox-group" style={{ marginTop: "1rem" }}>
               <input 
                 type="checkbox" 
                 id="consent" 
@@ -274,11 +282,13 @@ export default function ContactFormClient({ info, whatsappNumber }) {
                 checked={formData.consent}
                 onChange={handleChange}
               />
-              <label htmlFor="consent">I agree to be contacted about this request. *</label>
+              <label htmlFor="consent" style={{ cursor: "pointer" }}>
+                I agree to the privacy terms and consent to being contacted by an Aurelia corporate advisor regarding this request. *
+              </label>
             </div>
 
-            <button type="submit" className="btn btn-secondary" id="submitFormBtn" style={{ width: "100%" }}>
-              Submit Request
+            <button type="submit" className="btn btn-primary" id="submitFormBtn" style={{ width: "100%", justifyContent: "center", padding: "1.1rem", fontSize: "0.85rem", letterSpacing: "0.15em", cursor: "pointer" }}>
+              Submit Sourcing Request
             </button>
           </form>
         </div>
