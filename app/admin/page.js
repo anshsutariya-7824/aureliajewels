@@ -602,6 +602,28 @@ export default function AdminPage() {
     }
   };
 
+  const handleResetContent = async () => {
+    if (!confirm("Are you sure you want to reset all copywriting configurations to default? This will overwrite your current database text with the clean 'CrownCarat' defaults from the file.")) return;
+    try {
+      const res = await fetch("/api/content", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ reset: true }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        // Fetch new content to sync local state
+        fetchData();
+        addLog("Reset Site Content", "Copy and descriptions reset to file defaults.");
+        showToast("Success", "Copywriting configurations reset to file defaults.");
+      } else {
+        showToast("Error", data.message || "Failed to reset copywriting configurations.");
+      }
+    } catch (err) {
+      showToast("Error", "Failed to contact reset endpoint.");
+    }
+  };
+
   // Lockscreen display before auth
   if (!isAuthenticated) {
     return (
@@ -1391,9 +1413,19 @@ export default function AdminPage() {
                   </div>
                 </div>
 
-                <button type="submit" className="btn btn-primary" style={{ padding: "1rem 2.5rem", fontSize: "1.05rem" }}>
-                  Save Copywriting Configurations
-                </button>
+                <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+                  <button type="submit" className="btn btn-primary" style={{ padding: "1rem 2.5rem", fontSize: "1.05rem" }}>
+                    Save Copywriting Configurations
+                  </button>
+                  <button 
+                    type="button" 
+                    onClick={handleResetContent} 
+                    className="btn btn-secondary" 
+                    style={{ padding: "1rem 2.5rem", fontSize: "1.05rem", borderColor: "var(--color-gold)", color: "var(--color-gold)", background: "transparent" }}
+                  >
+                    Reset to File Defaults
+                  </button>
+                </div>
               </form>
             </section>
           )}

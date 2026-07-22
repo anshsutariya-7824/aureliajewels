@@ -19,7 +19,16 @@ export async function GET() {
 
 export async function POST(req) {
   try {
-    const { content } = await req.json();
+    const body = await req.json();
+    let content = body.content;
+    const isReset = body.reset === true;
+
+    if (isReset) {
+      const fileData = fs.readFileSync(contentFilePath, "utf-8");
+      const parsed = JSON.parse(fileData);
+      content = parsed.content || parsed;
+    }
+
     if (!content || typeof content !== "object") {
       return NextResponse.json(
         { success: false, message: "Invalid content object" },
