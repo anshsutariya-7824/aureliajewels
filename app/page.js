@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getProductsData, getContentData } from "@/lib/db";
 import InquireButton from "@/components/InquireButton";
+import HeroSlider from "@/components/HeroSlider";
 
 export const dynamic = "force-dynamic";
 
@@ -42,37 +43,21 @@ export default async function HomePage() {
   // Get featured products (Limit 4, active only)
   const featuredProducts = products.filter(p => p.isActive !== false).slice(0, 4);
 
+  // Prepare banners list
+  const banners = hero.banners || [
+    {
+      id: "default",
+      image: hero.image,
+      subtitle: hero.subtitle,
+      title: hero.title,
+      description: hero.description
+    }
+  ];
+
   return (
     <div>
-      {/* Hero Section */}
-      <section className="hero" id="homeHero">
-        <div className="hero-bg">
-          <img src={hero.image} alt="AURELIA fine diamond and gold jewelry" />
-        </div>
-        <div className="hero-overlay"></div>
-        <div className="container">
-          <div className="hero-content">
-            <span className="subtitle">{hero.subtitle}</span>
-            <h1>{hero.title}</h1>
-            <p>{hero.description}</p>
-            <div className="hero-btns">
-              <Link href="/collections" className="btn btn-secondary" id="heroExploreBtn">
-                View Collections
-              </Link>
-              <Link href="/contact" className="btn btn-primary" id="heroBookBtn">
-                Request a Quote
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="hero-cert-card cert-frame">
-          <div className="cert-label">Grading Report No. AU-30581</div>
-          <div className="cert-row"><span>Cut</span><b>Excellent</b></div>
-          <div className="cert-row"><span>Color</span><b>E</b></div>
-          <div className="cert-row"><span>Clarity</span><b>VVS1</b></div>
-          <div className="cert-row"><span>Carat</span><b>2.10</b></div>
-        </div>
-      </section>
+      {/* Hero Slider Section */}
+      <HeroSlider banners={banners} />
 
       {/* Brand Pillars */}
       <section className="pillars" id="brandPillars">

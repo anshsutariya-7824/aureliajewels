@@ -5,7 +5,37 @@
         "subtitle": "Exclusive Fine Jewelry & Certified Diamonds",
         "title": "Fine jewelry, made to a standard you can verify.",
         "description": "AURELIA designs and casts 18k gold and certified diamond jewelry — one bespoke piece for a private client, or a full production run for a retail partner. Every stone traceable, every setting inspected.",
-        "image": "images/hero-bg.png"
+        "image": "images/hero-bg.png",
+        "banners": [
+          {
+            "id": "banner_default",
+            "image": "images/hero-bg.png",
+            "subtitle": "Exclusive Fine Jewelry & Certified Diamonds",
+            "title": "Fine jewelry, made to a standard you can verify.",
+            "description": "AURELIA designs and casts 18k gold and certified diamond jewelry — one bespoke piece for a private client, or a full production run for a retail partner. Every stone traceable, every setting inspected."
+          },
+          {
+            "id": "banner_necklace",
+            "image": "images/hero-slide-1.png",
+            "subtitle": "Artisan Craftsmanship",
+            "title": "Individually Cast, Meticulously Set",
+            "description": "Every ring and pendant is created in-house using vacuum induction casting and hand-finished by master jewelers in our state-of-the-art atelier."
+          },
+          {
+            "id": "banner_rings",
+            "image": "images/hero-slide-2.png",
+            "subtitle": "Conflict-Free Certified",
+            "title": "Traceable Diamonds & RJC-Gold",
+            "description": "We source only Kimberley Process certified stones and audited conflict-free precious metals, so you can trace your jewelry from mine to market."
+          },
+          {
+            "id": "banner_craft",
+            "image": "images/hero-slide-3.png",
+            "subtitle": "Bespoke Jewelry Design",
+            "title": "Your Vision, Crafted to Perfection",
+            "description": "Collaborate with our designers to sketch, 3D render, and cast a one-of-a-kind treasure made exclusively for you."
+          }
+        ]
       },
       "pillars": [
         {

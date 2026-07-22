@@ -233,30 +233,202 @@ header.sticky {
 }
 .whatsapp-float:hover { transform: translateY(-3px); background: var(--ink); }
 
-/* ---------------- Hero ---------------- */
-.hero {
+/* ---------------- Hero Slider ---------------- */
+.hero-slider {
   position: relative;
   min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   padding-top: 6rem;
-  overflow: hidden;
 }
-.hero-bg { position: absolute; inset: 0; }
-.hero-bg img { width: 100%; height: 100%; object-fit: cover; }
-.hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(100deg, rgba(21,22,26,0.82) 15%, rgba(21,22,26,0.42) 55%, rgba(21,22,26,0.2) 100%);
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
 }
-.hero .container { position: relative; z-index: 2; }
-.hero-content { max-width: 620px; }
-.hero .subtitle { color: var(--gold-light); }
-.hero .subtitle::before { background: var(--gold-light); }
-.hero h1 { color: #fff; margin-bottom: 1.3rem; }
-.hero p { color: rgba(255,255,255,0.78); max-width: 480px; margin-bottom: 2.2rem; font-size: 1.02rem; }
-.hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; }
-.hero .btn-secondary { color: #fff; border-color: rgba(255,255,255,0.35); }
-.hero .btn-secondary:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+.hero-slide.active {
+  opacity: 1;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.hero-slide-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-slide-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.hero-slide.active .hero-slide-bg img {
+  transform: scale(1.06);
+}
+
+.hero-slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgba(21, 22, 26, 0.85) 15%, rgba(21, 22, 26, 0.45) 55%, rgba(21, 22, 26, 0.2) 100%);
+  z-index: 2;
+}
+
+.hero-slide .container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+.hero-content {
+  max-width: 620px;
+}
+
+.hero-slide .subtitle {
+  color: var(--gold-light);
+}
+
+.hero-slide .subtitle::before {
+  background: var(--gold-light);
+}
+
+.hero-slide h1 {
+  color: #fff;
+  margin-bottom: 1.3rem;
+}
+
+.hero-slide p {
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 480px;
+  margin-bottom: 2.2rem;
+  font-size: 1.02rem;
+}
+
+.hero-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hero-slide .btn-secondary {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.hero-slide .btn-secondary:hover {
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+}
+
+/* Staggered Animations for Text Content */
+.hero-slide .hero-content > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.hero-slide.active .hero-content > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-slide.active .hero-content .subtitle {
+  transition-delay: 0.15s;
+}
+
+.hero-slide.active .hero-content h1 {
+  transition-delay: 0.3s;
+}
+
+.hero-slide.active .hero-content p {
+  transition-delay: 0.45s;
+}
+
+.hero-slide.active .hero-content .hero-btns {
+  transition-delay: 0.6s;
+}
+
+/* Slider Controls Navigation */
+.hero-slider-nav {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  z-index: 10;
+}
+
+.hero-slider-dot {
+  width: 24px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, width 0.3s ease;
+}
+
+.hero-slider-dot.active {
+  background: var(--gold-light);
+  width: 44px;
+}
+
+.hero-slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(21, 22, 26, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: var(--transition-fast);
+  backdrop-filter: blur(4px);
+}
+
+.hero-slider-arrow:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #000;
+}
+
+.hero-slider-arrow.prev {
+  left: clamp(1rem, 4vw, 3rem);
+}
+
+.hero-slider-arrow.next {
+  right: clamp(1rem, 4vw, 3rem);
+}
+
+@media (max-width: 768px) {
+  .hero-slider-arrow {
+    display: none; /* Touch swipe & dots are better for mobile screen */
+  }
+}
 
 /* Certificate card overlay — signature element */
 .hero-cert-card {

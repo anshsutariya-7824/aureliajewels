@@ -16,6 +16,8 @@ export default function AdminPage() {
   const [products, setProducts] = useState([]);
   const [diamonds, setDiamonds] = useState([]);
   const [content, setContent] = useState({});
+  const [banners, setBanners] = useState([]);
+  const [newBanner, setNewBanner] = useState({ image: "", subtitle: "", title: "", description: "" });
   const [images, setImages] = useState([]);
   const [logs, setLogs] = useState([]);
   const [inquiries, setInquiries] = useState([]);
@@ -80,6 +82,7 @@ export default function AdminPage() {
   const mediaInputRef = useRef(null);
   const productImgInputRef = useRef(null);
   const diamondImgInputRef = useRef(null);
+  const bannerImgInputRef = useRef(null);
 
   // Authenticate on mount
   useEffect(() => {
@@ -137,7 +140,21 @@ export default function AdminPage() {
       const contentRes = await fetch("/api/content");
       const contentData = await contentRes.json();
       if (contentData.success) {
-        setContent(contentData.content || {});
+        const cnt = contentData.content || {};
+        setContent(cnt);
+        if (cnt.home?.hero?.banners) {
+          setBanners(cnt.home.hero.banners);
+        } else {
+          setBanners([
+            {
+              id: "banner_default",
+              image: cnt.home?.hero?.image || "images/hero-bg.png",
+              subtitle: cnt.home?.hero?.subtitle || "Exclusive Fine Jewelry & Certified Diamonds",
+              title: cnt.home?.hero?.title || "Fine jewelry, made to a standard you can verify.",
+              description: cnt.home?.hero?.description || "AURELIA designs and casts 18k gold and certified diamond jewelry..."
+            }
+          ]);
+        }
       }
 
       // Fetch Images
@@ -225,6 +242,8 @@ export default function AdminPage() {
           setProductForm((prev) => ({ ...prev, image: data.filepath }));
         } else if (target === "diamond") {
           setDiamondForm((prev) => ({ ...prev, image: data.filepath }));
+        } else if (target === "banner") {
+          setNewBanner((prev) => ({ ...prev, image: data.filepath }));
         }
 
         // Refresh Media List
@@ -474,6 +493,32 @@ export default function AdminPage() {
     }
   };
 
+  const handleAddBanner = () => {
+    if (!newBanner.image) {
+      showToast("Error", "Please upload or specify a banner image.");
+      return;
+    }
+    const bannerToAdd = {
+      id: "banner_" + Date.now(),
+      image: newBanner.image,
+      subtitle: newBanner.subtitle,
+      title: newBanner.title,
+      description: newBanner.description
+    };
+    setBanners((prev) => [...prev, bannerToAdd]);
+    setNewBanner({ image: "", subtitle: "", title: "", description: "" });
+    showToast("Banner Added", "Slide added. Remember to click 'Save Copywriting Configurations' below.");
+  };
+
+  const handleDeleteBanner = (id) => {
+    if (banners.length <= 1) {
+      showToast("Error", "You must keep at least one hero banner slide.");
+      return;
+    }
+    setBanners((prev) => prev.filter((b) => b.id !== id));
+    showToast("Banner Removed", "Slide deleted. Remember to click 'Save Copywriting Configurations' below.");
+  };
+
   // Content Copywriting Save handler
   const handleSaveContent = async (e) => {
     e.preventDefault();
@@ -489,6 +534,16 @@ export default function AdminPage() {
     updatedContent.home.hero.subtitle = formData.get("home_hero_subtitle");
     updatedContent.home.hero.title = formData.get("home_hero_title");
     updatedContent.home.hero.description = formData.get("home_hero_description");
+
+    // Save current banners list
+    updatedContent.home.hero.banners = banners;
+    // Mirror the first slide as default fields for backward compatibility
+    if (banners.length > 0) {
+      updatedContent.home.hero.image = banners[0].image;
+      updatedContent.home.hero.subtitle = banners[0].subtitle || formData.get("home_hero_subtitle");
+      updatedContent.home.hero.title = banners[0].title || formData.get("home_hero_title");
+      updatedContent.home.hero.description = banners[0].description || formData.get("home_hero_description");
+    }
 
     // Home Craftsmanship
     if (!updatedContent.home.craftsmanship) updatedContent.home.craftsmanship = {};
@@ -1088,6 +1143,114 @@ export default function AdminPage() {
                         <label className="form-label">Hero Slogan Description</label>
                         <textarea name="home_hero_description" className="form-textarea" rows="3" defaultValue={content.home?.hero?.description || ""}></textarea>
                       </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* HERO BANNER SLIDESHOW MANAGER */}
+                <div className="card" style={{ marginBottom: "2rem" }}>
+                  <div className="card-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <h2>Homepage Hero Slideshow Banners</h2>
+                    <span style={{ fontSize: "0.85rem", color: "var(--color-gold)" }}>{banners.length} Slides Active</span>
+                  </div>
+                  <div style={{ padding: "1.5rem" }}>
+                    {/* Banners List */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2rem" }}>
+                      {banners.map((b, idx) => (
+                        <div key={b.id || idx} style={{ display: "flex", gap: "1.5rem", padding: "1rem", background: "rgba(255,255,255,0.02)", border: "1px solid var(--color-border)", borderRadius: "8px", position: "relative" }}>
+                          <img src={formatImagePath(b.image)} style={{ width: "160px", height: "100px", objectFit: "cover", borderRadius: "4px", border: "1px solid rgba(255,255,255,0.1)" }} alt="" />
+                          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.3rem" }}>
+                            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem", color: "var(--color-gold)", letterSpacing: "1px", textTransform: "uppercase" }}>{b.subtitle || "No Subtitle"}</span>
+                            <h3 style={{ fontSize: "1.1rem", color: "#fff", margin: 0 }}>{b.title || "No Title"}</h3>
+                            <p style={{ fontSize: "0.82rem", color: "var(--color-text-muted)", margin: 0, overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>{b.description || "No Description"}</p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteBanner(b.id)}
+                            style={{ alignSelf: "center", background: "rgba(234, 84, 85, 0.1)", color: "var(--color-error)", border: "1px solid rgba(234, 84, 85, 0.2)", padding: "8px 12px", borderRadius: "4px", fontSize: "0.8rem", cursor: "pointer", transition: "all 0.2s" }}
+                          >
+                            <i className="fa-solid fa-trash-can" style={{ marginRight: "4px" }}></i> Delete
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Add New Banner Section */}
+                    <div style={{ borderTop: "1px solid var(--color-border)", paddingTop: "1.5rem" }}>
+                      <h3 style={{ fontSize: "1.1rem", color: "#fff", marginBottom: "1.2rem" }}>Add New Banner Slide</h3>
+                      
+                      <div className="form-grid">
+                        <div className="form-group span-2">
+                          <label className="form-label">Banner Image Source Path</label>
+                          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+                            <input
+                              type="text"
+                              className="form-input"
+                              placeholder="e.g. images/hero-slide-1.png"
+                              value={newBanner.image}
+                              onChange={(e) => setNewBanner({ ...newBanner, image: e.target.value })}
+                              style={{ flex: 1 }}
+                            />
+                            <input
+                              type="file"
+                              ref={bannerImgInputRef}
+                              style={{ display: "none" }}
+                              accept="image/*"
+                              onChange={(e) => handleUploadImage(e, "banner")}
+                            />
+                            <button
+                              type="button"
+                              className="btn btn-secondary"
+                              onClick={() => bannerImgInputRef.current?.click()}
+                              style={{ whiteSpace: "nowrap" }}
+                            >
+                              <i className="fa-solid fa-cloud-arrow-up" style={{ marginRight: "6px" }}></i> Upload Image
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="form-group">
+                          <label className="form-label">Slide Subtitle</label>
+                          <input
+                            type="text"
+                            className="form-input"
+                            placeholder="e.g. Exquisite Diamond Jewelry"
+                            value={newBanner.subtitle}
+                            onChange={(e) => setNewBanner({ ...newBanner, subtitle: e.target.value })}
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <label className="form-label">Slide Title</label>
+                          <input
+                            type="text"
+                            className="form-input"
+                            placeholder="e.g. Rare & Investment Grade"
+                            value={newBanner.title}
+                            onChange={(e) => setNewBanner({ ...newBanner, title: e.target.value })}
+                          />
+                        </div>
+
+                        <div className="form-group span-2">
+                          <label className="form-label">Slide Description</label>
+                          <textarea
+                            className="form-textarea"
+                            rows="2"
+                            placeholder="Describe the collection or craftsmanship featured in this slide..."
+                            value={newBanner.description}
+                            onChange={(e) => setNewBanner({ ...newBanner, description: e.target.value })}
+                          />
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={handleAddBanner}
+                        className="btn btn-secondary"
+                        style={{ marginTop: "1.2rem", borderColor: "var(--color-gold)", color: "var(--color-gold)", background: "transparent" }}
+                      >
+                        <i className="fa-solid fa-plus" style={{ marginRight: "6px" }}></i> Add Banner to List
+                      </button>
                     </div>
                   </div>
                 </div>
