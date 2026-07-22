@@ -8,7 +8,7 @@ export default function DiamondDetailClient({ diamond, relatedDiamonds, whatsapp
   const [activeImage, setActiveImage] = useState(diamond.image);
 
   const whatsappMsg = encodeURIComponent(
-    `Hi Aurelia Exports, I'm interested in this IGI certified diamond: ${diamond.name} (${diamond.certificate})`
+    `Hi CrownCarat, I'm interested in this IGI certified diamond: ${diamond.name} (${diamond.certificate})`
   );
 
   const contactUrl = `/contact?product=${encodeURIComponent(diamond.name)}`;

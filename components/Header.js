@@ -43,8 +43,16 @@ export default function Header() {
   return (
     <header id="siteHeader" className={isSticky ? "sticky" : ""}>
       <div className="nav-container">
-        <Link href="/" className="logo" onClick={closeMenu}>
-          AURELIA<span>.</span>
+        <Link href="/" className="logo" onClick={closeMenu} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <svg className="logo-svg" viewBox="0 0 100 100" width="28" height="28" style={{ color: "var(--gold)", fill: "none", stroke: "currentColor", strokeWidth: "5", strokeLinejoin: "round", strokeLinecap: "round", flexShrink: 0 }}>
+            <path d="M20 75 L10 35 L38 50 L50 20 L62 50 L90 35 L80 75 Z" />
+            <path d="M20 75 L50 95 L80 75" />
+            <path d="M38 50 L50 75 L62 50" />
+            <path d="M50 20 L50 75" />
+          </svg>
+          <span style={{ fontWeight: "500", letterSpacing: "0.08em", textTransform: "uppercase", fontSize: "1.25rem", display: "inline-flex", alignItems: "center" }}>
+            Crown<span style={{ color: "var(--gold)" }}>Carat</span>
+          </span>
         </Link>
 
         <nav className={`nav-links ${isMenuOpen ? "active" : ""}`} aria-label="Main Navigation">

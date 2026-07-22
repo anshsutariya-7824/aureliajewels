@@ -14,12 +14,12 @@ export async function generateMetadata({ params }) {
 
   if (!diamond) {
     return {
-      title: "Diamond Not Found | AURELIA Jewelry",
+      title: "Diamond Not Found | CrownCarat",
     };
   }
 
   return {
-    title: `${diamond.name} | IGI Certified Diamond | AURELIA Jewelry`,
+    title: `${diamond.name} | IGI Certified Diamond | CrownCarat`,
     description: `IGI Certified ${diamond.name}. Specs: Cut: ${diamond.cut}, Clarity: ${diamond.clarity}, Color: ${diamond.color}, Carat: ${diamond.carat} ct. Certified conflict-free.`,
   };
 }

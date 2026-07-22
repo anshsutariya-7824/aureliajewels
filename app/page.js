@@ -15,7 +15,7 @@ export default async function HomePage() {
   const hero = homeContent.hero || {
     subtitle: "Exclusive Fine Jewelry & Certified Diamonds",
     title: "Fine jewelry, made to a standard you can verify.",
-    description: "AURELIA designs and casts 18k gold and certified diamond jewelry — one bespoke piece for a private client, or a full production run for a retail partner. Every stone traceable, every setting inspected.",
+    description: "CrownCarat designs and casts 18k gold and certified diamond jewelry — one bespoke piece for a private client, or a full production run for a retail partner. Every stone traceable, every setting inspected.",
     image: "images/hero-bg.png"
   };
   
@@ -27,7 +27,7 @@ export default async function HomePage() {
   const craftsmanship = homeContent.craftsmanship || {
     subtitle: "Inside the Workshop",
     title: "Casting and prototyping, done in-house",
-    description1: "AURELIA combines 3D resin prototyping, precise CAD modeling, and vacuum induction casting with hand-finishing by master setters. Every setting is checked for accuracy to within 10 microns.",
+    description1: "CrownCarat combines 3D resin prototyping, precise CAD modeling, and vacuum induction casting with hand-finishing by master setters. Every setting is checked for accuracy to within 10 microns.",
     description2: "We use only RJC-certified metal and Kimberley Process diamonds — a supply chain our clients can trace, whether they're buying one ring or one thousand.",
     image: "images/craftsmanship_new.png"
   };
@@ -87,7 +87,7 @@ export default async function HomePage() {
           <div className="categories-grid reveal active">
             <Link href="/collections?filter=rings" className="category-card" id="categoryRings">
               <div className="category-img">
-                <img src="images/ring-collection.png" alt="AURELIA gold and diamond ring collection" />
+                <img src="images/ring-collection.png" alt="CrownCarat gold and diamond ring collection" />
               </div>
               <div className="category-overlay">
                 <h3>Rings</h3>
@@ -97,7 +97,7 @@ export default async function HomePage() {
 
             <Link href="/collections?filter=necklaces" className="category-card" id="categoryNecklaces">
               <div className="category-img">
-                <img src="images/necklace-collection.png" alt="AURELIA gold and emerald necklace collection" />
+                <img src="images/necklace-collection.png" alt="CrownCarat gold and emerald necklace collection" />
               </div>
               <div className="category-overlay">
                 <h3>Necklaces</h3>
@@ -107,7 +107,7 @@ export default async function HomePage() {
 
             <Link href="/collections?filter=bracelets" className="category-card" id="categoryBracelets">
               <div className="category-img">
-                <img src="images/bracelet-collection.png" alt="AURELIA diamond bracelet collection" />
+                <img src="images/bracelet-collection.png" alt="CrownCarat diamond bracelet collection" />
               </div>
               <div className="category-overlay">
                 <h3>Bangles &amp; Bracelets</h3>
@@ -117,7 +117,7 @@ export default async function HomePage() {
 
             <Link href="/collections?filter=earrings" className="category-card" id="categoryEarrings">
               <div className="category-img">
-                <img src="images/earring-collection.png" alt="AURELIA drop earring collection" />
+                <img src="images/earring-collection.png" alt="CrownCarat drop earring collection" />
               </div>
               <div className="category-overlay">
                 <h3>Earrings</h3>
@@ -133,13 +133,13 @@ export default async function HomePage() {
         <div className="container">
           <div className="grid-2" style={{ direction: "rtl" }}>
             <div className="wholesale-img-wrapper reveal active cert-frame" style={{ direction: "ltr" }}>
-              <img src="images/wholesale-b2b.png" alt="Aurelia wholesale diamond sourcing and bulk jewelry manufacturing setup" />
+              <img src="images/wholesale-b2b.png" alt="CrownCarat wholesale diamond sourcing and bulk jewelry manufacturing setup" />
             </div>
             <div className="wholesale-content reveal active" style={{ direction: "ltr" }}>
               <span className="subtitle">B2B & Sourcing</span>
               <h2>Wholesale & Sourcing Partnerships</h2>
               <p style={{ marginBottom: "1.5rem" }}>
-                Aurelia partners with fine jewelry brands, retail chains, and boutique importers to deliver reliable volume casting and precision stone sourcing. By integrating in-house CAD modeling, casting, and certified grading, we assure absolute consistency from sample to final delivery.
+                CrownCarat partners with fine jewelry brands, retail chains, and boutique importers to deliver reliable volume casting and precision stone sourcing. By integrating in-house CAD modeling, casting, and certified grading, we assure absolute consistency from sample to final delivery.
               </p>
               <ul className="spec-detail-list" style={{ marginBottom: "2rem", display: "grid", gap: "0.8rem" }}>
                 <li style={{ position: "relative", paddingLeft: "1.5rem" }}>
@@ -260,7 +260,7 @@ export default async function HomePage() {
         <div className="container">
           <div className="grid-2">
             <div className="craft-img-wrapper reveal active cert-frame">
-              <img src={craftsmanship.image} alt="Master jeweler hand-finishing a diamond setting in the AURELIA workshop" />
+              <img src={craftsmanship.image} alt="Master jeweler hand-finishing a diamond setting in the CrownCarat workshop" />
             </div>
             <div className="craft-content reveal active">
               <span className="subtitle">{craftsmanship.subtitle}</span>
@@ -296,7 +296,7 @@ export default async function HomePage() {
                 <i className="fa-solid fa-star"></i>
               </div>
               <blockquote className="testimonial-quote">
-                "Aurelia has transformed our inventory cycle. Their 3D prototyping is accurate down to the micron, and the finished 18k pieces match our CAD files flawlessly. The IGI-certified stones are consistently top-grade."
+                "CrownCarat has transformed our inventory cycle. Their 3D prototyping is accurate down to the micron, and the finished 18k pieces match our CAD files flawlessly. The IGI-certified stones are consistently top-grade."
               </blockquote>
               <div className="testimonial-meta">
                 <span className="client-name">Marcus Vance</span>
@@ -313,7 +313,7 @@ export default async function HomePage() {
                 <i className="fa-solid fa-star"></i>
               </div>
               <blockquote className="testimonial-quote">
-                "For our bespoke commissions, Aurelia’s craftsmanship is exceptional. Their sourcing conforms strictly to the Kimberley Process, giving our private buyers complete confidence. Truly the gold standard."
+                "For our bespoke commissions, CrownCarat’s craftsmanship is exceptional. Their sourcing conforms strictly to the Kimberley Process, giving our private buyers complete confidence. Truly the gold standard."
               </blockquote>
               <div className="testimonial-meta">
                 <span className="client-name">Evelyn Dubois</span>
@@ -330,7 +330,7 @@ export default async function HomePage() {
                 <i className="fa-solid fa-star"></i>
               </div>
               <blockquote className="testimonial-quote">
-                "Their wholesale casting capacity combined with strict QA has made Aurelia our key manufacturing partner. Lead times are reliable, and their custom-cast mountings have set a new benchmark for our stores."
+                "Their wholesale casting capacity combined with strict QA has made CrownCarat our key manufacturing partner. Lead times are reliable, and their custom-cast mountings have set a new benchmark for our stores."
               </blockquote>
               <div className="testimonial-meta">
                 <span className="client-name">Kenji Sato</span>

@@ -4,7 +4,7 @@
       "hero": {
         "subtitle": "Exclusive Fine Jewelry & Certified Diamonds",
         "title": "Fine jewelry, made to a standard you can verify.",
-        "description": "AURELIA designs and casts 18k gold and certified diamond jewelry — one bespoke piece for a private client, or a full production run for a retail partner. Every stone traceable, every setting inspected.",
+        "description": "CrownCarat designs and casts 18k gold and certified diamond jewelry — one bespoke piece for a private client, or a full production run for a retail partner. Every stone traceable, every setting inspected.",
         "image": "images/hero-bg.png",
         "banners": [
           {
@@ -12,7 +12,7 @@
             "image": "images/hero-bg.png",
             "subtitle": "Exclusive Fine Jewelry & Certified Diamonds",
             "title": "Fine jewelry, made to a standard you can verify.",
-            "description": "AURELIA designs and casts 18k gold and certified diamond jewelry — one bespoke piece for a private client, or a full production run for a retail partner. Every stone traceable, every setting inspected."
+            "description": "CrownCarat designs and casts 18k gold and certified diamond jewelry — one bespoke piece for a private client, or a full production run for a retail partner. Every stone traceable, every setting inspected."
           },
           {
             "id": "banner_necklace",
@@ -61,7 +61,7 @@
       "craftsmanship": {
         "subtitle": "Inside the Workshop",
         "title": "Casting and prototyping, done in-house",
-        "description1": "AURELIA combines 3D resin prototyping, precise CAD modeling, and vacuum induction casting with hand-finishing by master setters. Every setting is checked for accuracy to within 10 microns.",
+        "description1": "CrownCarat combines 3D resin prototyping, precise CAD modeling, and vacuum induction casting with hand-finishing by master setters. Every setting is checked for accuracy to within 10 microns.",
         "description2": "We use only RJC-certified metal and Kimberley Process diamonds — a supply chain our clients can trace, whether they're buying one ring or one thousand.",
         "image": "images/craftsmanship_new.png"
       }
@@ -74,7 +74,7 @@
       "philosophy": {
         "subtitle": "Scale & Precision",
         "title": "From a single casting bench to a global workshop",
-        "description1": "AURELIA began as a small casting workshop and has grown into a full manufacturing atelier. We handle 3D CAD modeling, custom casting, and hand-setting under one roof — with the capacity to produce 50,000+ pieces a month for retail chains, wholesalers, and importers, and the patience to build a single custom commission the same way.",
+        "description1": "CrownCarat began as a small casting workshop and has grown into a full manufacturing atelier. We handle 3D CAD modeling, custom casting, and hand-setting under one roof — with the capacity to produce 50,000+ pieces a month for retail chains, wholesalers, and importers, and the patience to build a single custom commission the same way.",
         "description2": "Every stone we set is certified conflict-free, and every shipment carries the paperwork to prove it.",
         "feature1Title": "RJC Certified Sourcing",
         "feature1Desc": "We source only conflict-free metals and diamonds, audited for compliance.",
@@ -99,7 +99,7 @@
           {
             "year": "2010",
             "title": "RJC Sourcing Compliance",
-            "description": "AURELIA joins the Responsible Jewellery Council. From this point, 100% of our gold and diamonds are ethically sourced and documented."
+            "description": "CrownCarat joins the Responsible Jewellery Council. From this point, 100% of our gold and diamonds are ethically sourced and documented."
           },
           {
             "year": "2026",
@@ -117,7 +117,7 @@
       "info": {
         "address": "259, Silverstone Arcade, Singanpor gam, Singanpor, Surat, Gujarat 395004",
         "phone": "+91 8200395018",
-        "email": "hello@aureliajewelry.com",
+        "email": "hello@crowncarat.com",
         "mapUrl": "https://maps.google.com/maps?q=742%20Rue%20du%20Faubourg%20Saint-Honor%C3%A9%2075008%20Paris%20France&t=&z=15&ie=UTF8&iwloc=&output=embed",
         "hours": [
           {

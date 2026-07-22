@@ -87,7 +87,7 @@ export default function AdminPage() {
   // Authenticate on mount
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const isAuth = localStorage.getItem("aurelia_authenticated") === "true";
+      const isAuth = localStorage.getItem("crowncarat_authenticated") === "true";
       if (isAuth) {
         setIsAuthenticated(true);
         fetchData();
@@ -99,13 +99,13 @@ export default function AdminPage() {
   const handleUnlock = () => {
     const defaultPasscode = "admin@123";
     if (passcode === defaultPasscode) {
-      localStorage.setItem("aurelia_authenticated", "true");
+      localStorage.setItem("crowncarat_authenticated", "true");
       setPasscodeError(false);
       setLockModal({
         open: true,
         success: true,
         title: "Access Granted",
-        text: "Welcome to Aurelia Control Center. System authorization granted successfully."
+        text: "Welcome to CrownCarat Control Center. System authorization granted successfully."
       });
     } else {
       setPasscodeError(true);
@@ -120,7 +120,7 @@ export default function AdminPage() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("aurelia_authenticated");
+    localStorage.removeItem("crowncarat_authenticated");
     setIsAuthenticated(false);
     showToast("Logged Out", "Session ended successfully.");
   };
@@ -151,7 +151,7 @@ export default function AdminPage() {
               image: cnt.home?.hero?.image || "images/hero-bg.png",
               subtitle: cnt.home?.hero?.subtitle || "Exclusive Fine Jewelry & Certified Diamonds",
               title: cnt.home?.hero?.title || "Fine jewelry, made to a standard you can verify.",
-              description: cnt.home?.hero?.description || "AURELIA designs and casts 18k gold and certified diamond jewelry..."
+              description: cnt.home?.hero?.description || "CrownCarat designs and casts 18k gold and certified diamond jewelry..."
             }
           ]);
         }
@@ -610,7 +610,7 @@ export default function AdminPage() {
           <div className="lock-icon">
             <i className="fa-solid fa-shield-halved"></i>
           </div>
-          <h2 className="lock-title">AURELIA<span>.</span></h2>
+          <h2 className="lock-title">CrownCarat<span>.</span></h2>
           <p className="lock-subtitle">SECURE CONTROL CENTER ACCESS</p>
           
           <div className="lock-input-group">
@@ -733,7 +733,7 @@ export default function AdminPage() {
       {/* Sidebar Navigation */}
       <aside className="sidebar">
         <div className="sidebar-logo">
-          AURELIA<span>.</span> CONTROL
+          CrownCarat<span>.</span> CONTROL
         </div>
         <nav className="sidebar-nav">
           <button 
@@ -1543,7 +1543,7 @@ export default function AdminPage() {
                             <button 
                               onClick={() => {
                                 const cleanPhone = inq.phone.replace(/\D/g, "");
-                                const msg = encodeURIComponent(`Hi ${inq.name}, this is Aurelia Jewelry Exports. We received your business inquiry regarding ${inq.interest}.`);
+                                const msg = encodeURIComponent(`Hi ${inq.name}, this is CrownCarat Jewelry Exports. We received your business inquiry regarding ${inq.interest}.`);
                                 window.open(`https://wa.me/${cleanPhone}?text=${msg}`, "_blank");
                               }}
                               className="btn btn-secondary inquiry-chat-btn" 

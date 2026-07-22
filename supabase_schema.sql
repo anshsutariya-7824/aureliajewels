@@ -1,4 +1,4 @@
--- SQL Schema for AURELIA Jewelry Website Database (Supabase)
+-- SQL Schema for CrownCarat Jewelry Website Database (Supabase)
 -- Paste this script into your Supabase Dashboard SQL Editor and click Run.
 
 -- 1. Create Products Table

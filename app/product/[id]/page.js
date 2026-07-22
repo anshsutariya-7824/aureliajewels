@@ -11,12 +11,12 @@ export async function generateMetadata({ params }) {
   
   if (!product) {
     return {
-      title: "Product Not Found | AURELIA Jewelry",
+      title: "Product Not Found | CrownCarat",
     };
   }
 
   return {
-    title: `${product.name} | AURELIA Jewelry`,
+    title: `${product.name} | CrownCarat`,
     description: product.description,
   };
 }

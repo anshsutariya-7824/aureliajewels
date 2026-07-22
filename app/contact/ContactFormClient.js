@@ -79,7 +79,7 @@ export default function ContactFormClient({ info, whatsappNumber }) {
       if (data.success) {
         setModalTitle("Inquiry Submitted");
         setModalText(
-          `Thank you, ${formData.name}. We have received your wholesale request for ${formData.interest || "manufacturing catalog"}. A corporate account manager from AURELIA will contact you at ${formData.email} within 24 hours with our factory pricing sheet and catalogue.`
+          `Thank you, ${formData.name}. We have received your wholesale request for ${formData.interest || "manufacturing catalog"}. A corporate account manager from CrownCarat will contact you at ${formData.email} within 24 hours with our factory pricing sheet and catalogue.`
         );
         setModalOpen(true);
         
@@ -148,7 +148,7 @@ export default function ContactFormClient({ info, whatsappNumber }) {
           <div className="contact-whatsapp-box">
             <p>Prefer immediate chat? Talk directly with a corporate sourcing manager.</p>
             <a 
-              href={`https://wa.me/${whatsappNumber || "919427059390"}?text=Hi%20Aurelia%2C%20I%27d%20like%20to%20request%20more%20details.`} 
+              href={`https://wa.me/${whatsappNumber || "919427059390"}?text=Hi%20CrownCarat%2C%20I%27d%20like%20to%20request%20more%20details.`} 
               className="btn btn-secondary" 
               target="_blank" 
               rel="noopener noreferrer" 
@@ -188,7 +188,7 @@ export default function ContactFormClient({ info, whatsappNumber }) {
                   type="text" 
                   id="company" 
                   className="form-control" 
-                  placeholder="e.g. Aurelia Fine Jewelry (Write 'Individual' if personal)" 
+                  placeholder="e.g. CrownCarat Fine Jewelry (Write 'Individual' if personal)" 
                   required 
                   value={formData.company}
                   onChange={handleChange}
@@ -283,7 +283,7 @@ export default function ContactFormClient({ info, whatsappNumber }) {
                 onChange={handleChange}
               />
               <label htmlFor="consent" style={{ cursor: "pointer" }}>
-                I agree to the privacy terms and consent to being contacted by an Aurelia corporate advisor regarding this request. *
+                I agree to the privacy terms and consent to being contacted by a CrownCarat corporate advisor regarding this request. *
               </label>
             </div>
 
@@ -309,7 +309,7 @@ export default function ContactFormClient({ info, whatsappNumber }) {
             allowFullScreen="" 
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Aurelia Showroom Location Map"
+            title="CrownCarat Showroom Location Map"
           ></iframe>
         </div>
       </section>

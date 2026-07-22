@@ -10,7 +10,7 @@ export default function ProductDetailsClient({ product, relatedProducts, whatsap
   const [activeTab, setActiveTab] = useState("tabSpecs");
 
   const whatsappQuery = encodeURIComponent(
-    `Hi Aurelia Exports, I am looking to request a manufacturing quote for bulk orders of ${product.name} (ID: ${product.id}). Could you please share catalog specifications and FOB pricing?`
+    `Hi CrownCarat, I am looking to request a manufacturing quote for bulk orders of ${product.name} (ID: ${product.id}). Could you please share catalog specifications and FOB pricing?`
   );
 
   const requestCadUrl = `/contact?product=${product.id}`;

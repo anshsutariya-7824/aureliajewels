@@ -5,7 +5,7 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Loose Certified Diamonds | AURELIA Jewelry",
+  title: "Loose Certified Diamonds | CrownCarat",
   description: "Browse IGI certified loose diamonds sorted by carat, color, shape, cut, and clarity.",
 };
 

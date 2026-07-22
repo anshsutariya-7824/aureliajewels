@@ -6,7 +6,7 @@ export default function InquireButton({ productName, className = "product-inquir
     e.stopPropagation();
     const actualWhatsappNumber = whatsappNumber || "919427059390";
     const customMessage = encodeURIComponent(
-      `Hi Aurelia Exports, I am looking to request a manufacturing quote for bulk orders of ${productName}. Could you please share catalog specifications and FOB pricing?`
+      `Hi CrownCarat, I am looking to request a manufacturing quote for bulk orders of ${productName}. Could you please share catalog specifications and FOB pricing?`
     );
     window.open(`https://wa.me/${actualWhatsappNumber}?text=${customMessage}`, "_blank");
   };

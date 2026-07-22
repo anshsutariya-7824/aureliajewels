@@ -6,8 +6,8 @@ import { Suspense } from "react";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Contact Aurelia | Fine Jewelry & Diamond Sourcing",
-  description: "Get in touch with Aurelia. Start custom CAD jewelry designs, order prototypes, or request loose diamond pricing.",
+  title: "Contact CrownCarat | Fine Jewelry & Diamond Sourcing",
+  description: "Get in touch with CrownCarat. Start custom CAD jewelry designs, order prototypes, or request loose diamond pricing.",
 };
 
 export default async function ContactPage() {
@@ -21,7 +21,7 @@ export default async function ContactPage() {
   const info = contactContent.info || {
     address: "742 Rue du Faubourg Saint-Honoré,<br>75008 Paris, France",
     phone: "+33 (0) 1 42 68 53 00",
-    email: "hello@aureliajewelry.com",
+    email: "hello@crowncarat.com",
     mapUrl: "https://maps.google.com/maps?q=742%20Rue%20du%20Faubourg%20Saint-Honor%C3%A9%2075008%20Paris%20France&t=&z=15&ie=UTF8&iwloc=&output=embed",
     hours: []
   };

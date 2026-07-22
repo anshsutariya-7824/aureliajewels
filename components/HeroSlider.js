@@ -41,7 +41,7 @@ export default function HeroSlider({ banners }) {
             <div className="hero-slide-bg">
               <img
                 src={formatImagePath(slide.image)}
-                alt={slide.title || "AURELIA fine jewelry"}
+                alt={slide.title || "CrownCarat fine jewelry"}
               />
             </div>
             

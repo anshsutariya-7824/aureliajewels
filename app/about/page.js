@@ -14,7 +14,7 @@ export default async function AboutPage() {
   const philosophy = aboutContent.philosophy || {
     subtitle: "Scale & Precision",
     title: "From a single casting bench to a global workshop",
-    description1: "AURELIA began as a small casting workshop and has grown into a full manufacturing atelier. We handle 3D CAD modeling, custom casting, and hand-setting under one roof — with the capacity to produce 50,000+ pieces a month for retail chains, wholesalers, and importers, and the patience to build a single custom commission the same way.",
+    description1: "CrownCarat began as a small casting workshop and has grown into a full manufacturing atelier. We handle 3D CAD modeling, custom casting, and hand-setting under one roof — with the capacity to produce 50,000+ pieces a month for retail chains, wholesalers, and importers, and the patience to build a single custom commission the same way.",
     description2: "Every stone we set is certified conflict-free, and every shipment carries the paperwork to prove it.",
     feature1Title: "RJC Certified Sourcing",
     feature1Desc: "We source only conflict-free metals and diamonds, audited for compliance.",
@@ -66,7 +66,7 @@ export default async function AboutPage() {
             </div>
             
             <div className="craft-img-wrapper reveal active">
-              <img src={philosophy.image} alt="Aurelia master jeweler hand-finishing a gold ring at the workshop bench" />
+              <img src={philosophy.image} alt="CrownCarat master jeweler hand-finishing a gold ring at the workshop bench" />
             </div>
           </div>
         </div>

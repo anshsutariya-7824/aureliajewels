@@ -20,7 +20,7 @@ export default function Footer({ settings }) {
     if (!email) return;
 
     setModalTitle("Subscription Confirmed");
-    setModalText("Welcome to the world of AURELIA. You will now receive private access to new collections, exclusive boutique events, and bespoke content.");
+    setModalText("Welcome to the world of CrownCarat. You will now receive private access to new collections, exclusive boutique events, and bespoke content.");
     setModalOpen(true);
     setEmail("");
   };
@@ -32,8 +32,16 @@ export default function Footer({ settings }) {
           <div className="footer-grid">
             {/* Col 1: Brand Info */}
             <div className="footer-col">
-              <h3 className="footer-logo">
-                 AURELIA<span>.</span>
+              <h3 className="footer-logo" style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "1rem" }}>
+                <svg className="logo-svg" viewBox="0 0 100 100" width="24" height="24" style={{ color: "var(--gold)", fill: "none", stroke: "currentColor", strokeWidth: "5", strokeLinejoin: "round", strokeLinecap: "round" }}>
+                  <path d="M20 75 L10 35 L38 50 L50 20 L62 50 L90 35 L80 75 Z" />
+                  <path d="M20 75 L50 95 L80 75" />
+                  <path d="M38 50 L50 75 L62 50" />
+                  <path d="M50 20 L50 75" />
+                </svg>
+                <span style={{ fontWeight: "500", letterSpacing: "0.08em", textTransform: "uppercase", fontSize: "1.2rem", display: "inline-flex", alignItems: "center" }}>
+                  Crown<span style={{ color: "var(--gold)" }}>Carat</span>
+                </span>
               </h3>
               <p>
                 Fine jewelry manufacturer and diamond exporter, supplying certified pieces to individual buyers, retail stores, and importers worldwide.
@@ -88,7 +96,7 @@ export default function Footer({ settings }) {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; {new Date().getFullYear()} AURELIA Jewelry Exports. All Rights Reserved. Certified RJC Manufacturer.</p>
+            <p>&copy; {new Date().getFullYear()} CrownCarat Jewelry Exports. All Rights Reserved. Certified RJC Manufacturer.</p>
           </div>
         </div>
       </footer>
