@@ -39,17 +39,11 @@ export default function Footer({ settings }) {
                 Fine jewelry manufacturer and diamond exporter, supplying certified pieces to individual buyers, retail stores, and importers worldwide.
               </p>
               <div className="social-links">
-                <a href={settings?.linkedin || "#"} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                  <i className="fab fa-linkedin-in"></i>
-                </a>
                 <a href={settings?.instagram || "#"} aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                   <i className="fab fa-instagram"></i>
                 </a>
                 <a href={settings?.facebook || "#"} aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                   <i className="fab fa-facebook-f"></i>
-                </a>
-                <a href={settings?.youtube || "#"} aria-label="YouTube" target="_blank" rel="noopener noreferrer">
-                  <i className="fab fa-youtube"></i>
                 </a>
               </div>
             </div>
